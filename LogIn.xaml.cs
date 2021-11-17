@@ -10,15 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CourseWork
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for LogIn.xaml
+    /// </summary>
+    public partial class LogIn : Window
     {
-        public MainWindow()
+        public LogIn()
         {
             InitializeComponent();
         }

@@ -10,17 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CourseWork
 {
-
-    public partial class MainWindow : Window
+    public partial class LogInWindow : Window
     {
-        public MainWindow()
+        public LogInWindow()
         {
             InitializeComponent();
         }
+
+
+        private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+
+    
 }
