@@ -177,6 +177,7 @@ namespace CourseWork
                     DateTime exDate = new DateTime(year, month, day);
 
                     product.ExpirationDate = exDate;
+                    product.ExpirationDateString = product.ExpirationDate.ToShortDateString();
 
                     //це тестовий варіант лише для демонстрції функціоналу
                     if (prodType == "Dairy")

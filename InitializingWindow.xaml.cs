@@ -27,9 +27,13 @@ namespace CourseWork
             string pathToCustomers = @"C:\Users\Acer\OneDrive\Робочий стіл\C#\CourseWork\Backend\CustomersData.txt";
 
             string pathToProducts = @"C:\Users\Acer\OneDrive\Робочий стіл\C#\CourseWork\Backend\ProductData.txt";
+            string pathToAdmins = @"C:\Users\Acer\OneDrive\Робочий стіл\C#\CourseWork\Backend\AdministratorData.txt";
+            string pathToModers = @"C:\Users\Acer\OneDrive\Робочий стіл\C#\CourseWork\Backend\ModeratorData.txt";
 
             CustomerMediator.Instance().ReadCustomersFromTxtFile(pathToCustomers);
             StorageMediator.Instance().ReadProductsFromFile(pathToProducts);
+            StaffMediator.Instance().ReadAdminsFromFile(pathToAdmins);
+            StaffMediator.Instance().ReadModersFromFile(pathToModers);
             
             LogInWindow window = new LogInWindow();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CourseWork
@@ -95,6 +96,26 @@ namespace CourseWork
             return new Administrator();
         }
 
+        //читання з файлу використано чисто у демонстративних цілях
+        public void ReadAdminsFromFile(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string line;
+                while ((line = reader.ReadLine())!=null)
+                {
+                    string[] lineSplit = line.Split();
+
+                    Administrator admin = CreateNewAdministrator();
+
+                    admin.Login = lineSplit[0];
+                    admin.Password = lineSplit[1];
+                    admin.PhoneNumber = lineSplit[2];
+
+                    AddAdministrator(admin);
+                }
+            }    
+        }
     }
     #endregion
 }

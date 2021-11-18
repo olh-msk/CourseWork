@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CourseWork
@@ -94,6 +95,27 @@ namespace CourseWork
             //будуть отримуватись дані для модератора і по ним його створять
             //.....
             return new Moderator();
+        }
+
+        //читання з файлу чисто у демонтративних цілях
+        public void ReadModersFromFile(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] lineSplit = line.Split();
+
+                    Moderator moder = CreateNewModerator();
+
+                    moder.Login = lineSplit[0];
+                    moder.Password = lineSplit[1];
+                    moder.PhoneNumber = lineSplit[2];
+
+                    AddModerator(moder);
+                }
+            }
         }
     }
     #endregion

@@ -19,6 +19,7 @@ namespace CourseWork
         public int Amount { get; set; }
 
         public DateTime ExpirationDate { get; set; }
+        public string ExpirationDateString { get; set; }
 
         //юудемо ініціалізовувати через нащадків
         public Product()
@@ -29,6 +30,7 @@ namespace CourseWork
             this.Weight = 0;
             this.Amount = 0;
             this.ExpirationDate = DateTime.Now;
+            this.ExpirationDateString = this.ExpirationDate.ToShortDateString();
         }
     }
 }

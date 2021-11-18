@@ -157,5 +157,12 @@ namespace CourseWork
             }
             return child;
         }
+        //коли натиснули на клітинку, тобто добавили продукт у корзину
+        private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object item = ProductsGridTable.SelectedItem;
+            string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            MessageBox.Show(ID);
+        }
     }
 }
