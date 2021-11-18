@@ -49,6 +49,11 @@ namespace CourseWork
             cus.PersonalData = customerData;
             CustomerManager.AddCustomer(cus);
         }
+
+        public void ReadCustomersFromTxtFile(string path)
+        {
+            CustomerManager.Instance().ReadCustomersFromTxtFile(path);
+        }
     }
     #endregion
 }

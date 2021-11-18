@@ -141,7 +141,6 @@ namespace CourseWork
         //у базах даних
         public void ReadCustomersFromTxtFile(string path)
         {
-            Console.WriteLine("Start Reading");
             using (StreamReader reader = new StreamReader(path))
             {
                 int cusType;
@@ -169,7 +168,6 @@ namespace CourseWork
                     AddCustomer(cus);
                 }
             }
-            Console.WriteLine("Read from file success");
             foreach(Customer cus in customers)
             {
                 Console.WriteLine("Id: {0}",cus.CustomerId);

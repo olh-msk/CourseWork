@@ -28,9 +28,8 @@ namespace CourseWork
 
             string pathToProducts = @"C:\Users\Acer\OneDrive\Робочий стіл\C#\CourseWork\Backend\ProductData.txt";
 
-            CustomerManager.Instance().ReadCustomersFromTxtFile(pathToCustomers);
-
-
+            CustomerMediator.Instance().ReadCustomersFromTxtFile(pathToCustomers);
+            StorageMediator.Instance().ReadProductsFromFile(pathToProducts);
             
             LogInWindow window = new LogInWindow();
 

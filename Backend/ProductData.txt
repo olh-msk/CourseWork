@@ -1,0 +1,12 @@
+Dairy Milk 1 20 4 5:01:2022
+Dairy Cheese 5,4 220 4 28:09:2021
+Dairy Cerels 5 0,99 5 15:12:2021
+Dairy Egs 0,4 16,43 11 28:09:2021
+Household Pan 5 120 10 28:10:2031
+Household Bowl 2,5 100 10 12:10:2031
+Household Plate 1 10 10 28:03:2031
+Household Spoons 0,1 5 10 28:03:2031
+Meat Chicken 0,5 10 6 16:01:2022
+Meat Veal 2,4 20 6 15:01:2022
+Meat Fish 1,4 34 6 12:01:2022
+Meat Lamb 5,50 5 5 04:11:2021

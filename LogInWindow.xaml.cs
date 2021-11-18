@@ -44,8 +44,8 @@ namespace CourseWork
             {
                 if (customerMediator.IfCorrectLoginPassword(login, password))
                 {
-                    int cusId = customerMediator.GetCustomerIdByLogin(login);
-                    if (cusId == -1)
+                    int customerID = customerMediator.GetCustomerIdByLogin(login);
+                    if (customerID == -1)
                     {
                         MessageBox.Show("Wrong Input Data:\nDon`t have such customer",
                             "Don`t have such customer",
@@ -55,6 +55,13 @@ namespace CourseWork
                     }
                     textBoxLogin.ToolTip = "";
                     PassBox.ToolTip = "";
+                    MessageBox.Show($"Welcome {login}",
+                                    "Syccess",
+                                     MessageBoxButton.OK,
+                                        MessageBoxImage.Information);
+                    ShopWindow window = new ShopWindow(customerID);
+                    window.Show();
+                    this.Close();
                 }
                 //якщо неправильний логін чи пароль, то виводимо
                 //підказку на це
@@ -69,10 +76,7 @@ namespace CourseWork
                     return;
                 }
 
-                MessageBox.Show($"Welcome {login}",
-                        "Syccess",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+
             }
         }
         //хочуть зареєструватись-----------------
