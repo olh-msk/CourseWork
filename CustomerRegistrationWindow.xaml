@@ -7,38 +7,21 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="ForRegisterWindow" Height="544.8" Width="636.8">
+        Title="ForRegisterWindow" Height="576.6" Width="774.4">
     <Grid Background="#ffdadada">
-        <!--об'єкт, що буде мінятися від ширини вікна-->
-        <!--Ширина і відступи вказуються у пікселях-->
-        <!--Corner radius заукруглення кутів-->
-        <!--Border - свого роду плита, місце, де можна виставляти об'єкти-->
-        <Border MinWidth="400" Margin="15,98,15.4,54.2" Background="white"
-                VerticalAlignment="Center" Padding="30" MaxWidth="550"
-                CornerRadius="20" Height="363">
+        <!--Додаємо нову сторінку-->
+
+        <Border MinWidth="400" Margin="15,9,15.4,5.2" Background="white"
+                VerticalAlignment="Center" Padding="30"
+                CornerRadius="20" Height="500">
             <!--Для створення ефектів-->
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <!--StackPanel позволяє створювати об'єкти всередині нього
-            вони будуть займати всю його ширину-->
             <StackPanel>
-                <!--Margin може приймати 1 загальний або окемо відсдтуви від кожного краю-->
-                <TextBlock Text="Fill these fields" FontSize="30" FontWeight="DemiBold"
-                           TextAlignment="Center"/>
-                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint ="Enter login" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox x:Name="PassBox" materialDesign:HintAssist.Hint ="Enter pasword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <PasswordBox x:Name="PassBox_2" materialDesign:HintAssist.Hint ="Reenter pasword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint ="Enter email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Grid>
-                    <TextBlock Text="Choose your age" FontSize="15" FontWeight="Light"
-                           HorizontalAlignment="Left" Style="{StaticResource MaterialDesignTextBlock}" materialDesign:HintAssist.Hint ="Choose your age" />
-                    <ComboBox x:Name="ComboBoxAge" HorizontalAlignment="Right" Margin="0,0,0.4,0" Width="164">
-                        <ComboBoxItem>1</ComboBoxItem>
-                    </ComboBox>
-                </Grid>
-                <Button Content="Register" Margin="0,10,0,10" Height="38"/>
-                <!--можна і вручну обрабник подій добавляти-->
+                <Frame x:Name="MainRegisterFrame" Margin="0,0,0,10"/>
+                <Button x:Name="ButtonAdress" Content="Adress" Margin="0,10,0,10" Height="38" Width="100"
+                        Click="ButtonAdress_Click"/>
             </StackPanel>
         </Border>
     </Grid>

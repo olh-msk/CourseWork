@@ -16,9 +16,24 @@ namespace CourseWork
 {
     public partial class CustomerRegistrationWindow : Window
     {
+        //може мпілкуватись  змедіатором
+        //призначеним для форми і покпців
+        private CustomerMediator customerMediator;
+
+        PersonalData customerData; 
+
         public CustomerRegistrationWindow()
         {
+            customerData = new PersonalData();
+            customerMediator = CustomerMediator.Instance();
             InitializeComponent();
+            MainRegisterFrame.Content = new CustomerAcountRegisterPage();
         }
+
+        private void ButtonAdress_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
