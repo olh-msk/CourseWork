@@ -42,6 +42,13 @@ namespace CourseWork
         {
             return this.CustomerManager.IfHasSuchCustomerLogin(login);
         }
+        //створює нового користувача від форми, передає сигнали
+        public void CreateNewCustomer(PersonalData customerData)
+        {
+            Customer cus = CustomerManager.CreateCustomer(1);
+            cus.PersonalData = customerData;
+            CustomerManager.AddCustomer(cus);
+        }
     }
     #endregion
 }

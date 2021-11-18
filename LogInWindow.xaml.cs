@@ -51,6 +51,7 @@ namespace CourseWork
                             "Don`t have such customer",
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);
+                        return;
                     }
                     textBoxLogin.ToolTip = "";
                     PassBox.ToolTip = "";
@@ -65,12 +66,14 @@ namespace CourseWork
                         "Check your data",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
+                    return;
                 }
 
+                //пройшли всі перевірки-----------
                 Console.WriteLine(password);
             }
         }
-        //хочуть зареєструватись
+        //хочуть зареєструватись-----------------
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e)
         {
             string role = ComboBoxRole.Text;

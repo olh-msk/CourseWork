@@ -17,34 +17,45 @@ namespace CourseWork
 {
     public partial class AddressPage : Page
     {
+        PersonalData customerData;
         public AddressPage()
         {
             InitializeComponent();
-            //ініціалізувати вибір віку
-            for (int i = 6; i <= 90; i++)
-            {
-                ComboBoxAge.Items.Add(i);
-            }
-
+        }
+        public AddressPage(PersonalData data):this()
+        {
+            customerData = data;
         }
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
-            string login = textBoxLogin.Text;
-            string password = PassBox.Password;
-            string password_2 = PassBox_2.Password;
-            int age;
-            if(!Int32.TryParse(ComboBoxAge.Text, out age))
+            string street = textBoxStreet.Text;
+            string country = textBoxCountry.Text;
+            string city = textBoxCity.Text;
+            int zipcode;
+
+            if(!Int32.TryParse(textBoxZipCode.Text, out zipcode))
             {
-                MessageBox.Show("Select your age",
-                    "Warning",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                MessageBox.Show("Enter proper zipcode",
+                   "Reenter zipcode",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Information);
                 return;
             }
-            //у майбутньому можна буде передавати смс на цей номер
-            //ьелефона для підтвердження
-            string phoneNumber = TextBoxPhoneNumber.Text;
+            if (street.Length < 5 || country.Length < 5 ||
+                city.Length < 3)
+            {
+                MessageBox.Show("Enter proper data",
+                   "Reenter data",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Information);
+                return;
+            }
+
+            customerData.Address.Street = street;
+            customerData.Address.City = city;
+            customerData.Address.Country = country;
+            customerData.Address.Zipcode = zipcode;
         }
     }
 }

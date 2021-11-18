@@ -39,7 +39,7 @@
                     </ComboBox>
                 </Grid>
                 <TextBox x:Name="TextBoxPhoneNumber" materialDesign:HintAssist.Hint ="Enter phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button x:Name="ButtonRegister" Content="Register" Margin="0,10,0,10" Height="38" Click="ButtonRegister_Click"/>
+                <Button x:Name="ButtonRegister" Content="Save" Margin="0,10,0,10" Height="38" Width="200" Click="ButtonRegister_Click"/>
                 <!--можна і вручну обрабник подій добавляти-->
             </StackPanel>
         </Border>

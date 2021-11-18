@@ -64,9 +64,9 @@ namespace CourseWork
                 return;
             }
 
-            if(password.Length < 5 || login.Length < 5)
+            if(password.Length < 3 || login.Length < 3)
             {
-                MessageBox.Show("You should have at least 5 symbols for login and password",
+                MessageBox.Show("You should have at least 3 symbols for login and password",
                     "Enter new data",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
