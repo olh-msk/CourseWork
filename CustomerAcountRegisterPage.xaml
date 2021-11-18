@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:CourseWork"
       mc:Ignorable="d"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="CustomerAcountRegisterPage">
+      Title="CustomerAcountRegisterPage" Height="330" Width="518">
 
     <Grid Background="#ffdadada">
         <!--Додаємо нову сторінку-->
@@ -16,9 +15,9 @@
         <!--Ширина і відступи вказуються у пікселях-->
         <!--Corner radius заукруглення кутів-->
         <!--Border - свого роду плита, місце, де можна виставляти об'єкти-->
-        <Border MinWidth="400" Margin="15,9,15.4,5.2" Background="white"
+        <Border MinWidth="400" Background="white"
                 VerticalAlignment="Center" Padding="30" MaxWidth="550"
-                CornerRadius="20" Height="363">
+                Height="390">
             <!--Для створення ефектів-->
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>

@@ -27,13 +27,13 @@ namespace CourseWork
             customerData = new PersonalData();
             customerMediator = CustomerMediator.Instance();
             InitializeComponent();
-            MainRegisterFrame.Content = new CustomerAcountRegisterPage();
+            //передаємо на заповнення інформацію
+            MainRegisterFrame.Content = new CustomerAcountRegisterPage(customerData);
         }
 
         private void ButtonAdress_Click(object sender, RoutedEventArgs e)
         {
-            
+            Console.WriteLine(customerData.PnoneNumber);
         }
-
     }
 }

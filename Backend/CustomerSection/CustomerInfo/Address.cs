@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CourseWork
 {
-    class Address
+    public class Address
     {
         public string Street { get; set; }
         public string City { get; set; }

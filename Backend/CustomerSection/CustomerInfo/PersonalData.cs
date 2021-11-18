@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CourseWork
 {
-    class PersonalData
+    public class PersonalData
     {
         public string Login { get; set; }
 
@@ -13,7 +13,7 @@ namespace CourseWork
         public int Age { get; set; }
 
         public string PnoneNumber { get; set; }
-
+        public string Email { get; set; }
         public double Money { get; set; }
         public Address Address { get; set; }
 
@@ -24,6 +24,7 @@ namespace CourseWork
             this.Age = 0;
             this.PnoneNumber = "N/A";
             this.Money = 0;
+            this.Email = "N/A";
             this.Address = new Address();
         }
 

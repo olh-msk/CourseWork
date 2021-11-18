@@ -20,6 +20,7 @@ namespace CourseWork
     /// </summary>
     public partial class CustomerAcountRegisterPage : Page
     {
+        PersonalData customerData;
         public CustomerAcountRegisterPage()
         {
             InitializeComponent();
@@ -29,12 +30,20 @@ namespace CourseWork
                 ComboBoxAge.Items.Add(i);
             }
         }
+        public CustomerAcountRegisterPage(PersonalData data):this()
+        {
+            customerData = data;
+        }
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
             string login = textBoxLogin.Text;
             string password = PassBox.Password;
             string password_2 = PassBox_2.Password;
+            //у майбутньому можна буде передавати смс на цей номер
+            //телефона для підтвердження
+            string phoneNumber = TextBoxPhoneNumber.Text;
+            string email = textBoxEmail.Text;
             int age;
             if (!Int32.TryParse(ComboBoxAge.Text, out age))
             {
@@ -44,10 +53,56 @@ namespace CourseWork
                     MessageBoxImage.Information);
                 return;
             }
-            //у майбутньому можна буде передавати смс на цей номер
-            //ьелефона для підтвердження
-            string phoneNumber = TextBoxPhoneNumber.Text;
+            //ідеться довга перевірка на коректність даних
+            if(CustomerMediator.Instance().IfHasSuchLogin(login))
+            {
+                MessageBox.Show("An account with that login already exists\n" +
+                    "Enter new login",
+                    "Enter new login",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
 
+            if(password.Length < 5 || login.Length < 5)
+            {
+                MessageBox.Show("You should have at least 5 symbols for login and password",
+                    "Enter new data",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
+
+            if(password != password_2)
+            {
+                MessageBox.Show("Passwords must be equal",
+                    "Reenter password",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
+            if(phoneNumber.Length<10)
+            {
+                MessageBox.Show("Enter correct phone number",
+                   "Reenter phone number",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Information);
+                return;
+            }
+            if (!email.Contains('@') || !email.Contains('.'))
+            {
+                MessageBox.Show("Enter proper email",
+                    "Reenter email",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
+            //коли пройде всі перевірки
+            customerData.Login = login;
+            customerData.Password = password;
+            customerData.Email = email;
+            customerData.Age = age;
+            customerData.PnoneNumber = phoneNumber;
         }
     }
 }

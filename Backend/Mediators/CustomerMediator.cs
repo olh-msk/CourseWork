@@ -38,6 +38,10 @@ namespace CourseWork
         {
             return this.CustomerManager.GetCustomerIdByLogin(login);
         }
+        public bool IfHasSuchLogin(string login)
+        {
+            return this.CustomerManager.IfHasSuchCustomerLogin(login);
+        }
     }
     #endregion
 }
