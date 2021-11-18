@@ -69,8 +69,10 @@ namespace CourseWork
                     return;
                 }
 
-                //пройшли всі перевірки-----------
-                Console.WriteLine(password);
+                MessageBox.Show($"Welcome {login}",
+                        "Syccess",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
             }
         }
         //хочуть зареєструватись-----------------

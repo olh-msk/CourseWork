@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace CourseWork
 {
@@ -82,6 +84,7 @@ namespace CourseWork
             }
             return res;
         }
+        //чи правильно ввели логі ні пароль
         public bool IfCorrectLoginPassword(string login, string password)
         {
             bool res = false;
@@ -132,6 +135,45 @@ namespace CourseWork
             }
 
             return cust;
+        }
+
+        //метод чисто для показових цілей, вся інформацію буде зберігатись
+        //у базах даних
+        public void ReadCustomersFromTxtFile(string path)
+        {
+            Console.WriteLine("Start Reading");
+            using (StreamReader reader = new StreamReader(path))
+            {
+                int cusType;
+
+                string line;
+                //поки не зчитаються всі дані
+                while((line = reader.ReadLine()) != null)
+                {
+                    string[] lineSplit = line.Split();
+                    cusType = Int32.Parse(lineSplit[9]);
+
+
+                    Customer cus = CreateCustomer(cusType);
+
+                    cus.PersonalData.Login = lineSplit[0];
+                    cus.PersonalData.Password = lineSplit[1];
+                    cus.PersonalData.Email = lineSplit[2];
+                    cus.PersonalData.Age = Int32.Parse(lineSplit[3]);
+                    cus.PersonalData.PnoneNumber = lineSplit[4];
+                    cus.PersonalData.Address.Street = lineSplit[5];
+                    cus.PersonalData.Address.City = lineSplit[6];
+                    cus.PersonalData.Address.Country = lineSplit[7];
+                    cus.PersonalData.Address.Zipcode = Int32.Parse(lineSplit[8]);
+
+                    AddCustomer(cus);
+                }
+            }
+            Console.WriteLine("Read from file success");
+            foreach(Customer cus in customers)
+            {
+                Console.WriteLine("Id: {0}",cus.CustomerId);
+            }
         }
     }
 }

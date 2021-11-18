@@ -123,6 +123,9 @@
     <Compile Include="CustomerRegistrationWindow.xaml.cs">
       <DependentUpon>CustomerRegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InitializingWindow.xaml.cs">
+      <DependentUpon>InitializingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerRegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InitializingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
