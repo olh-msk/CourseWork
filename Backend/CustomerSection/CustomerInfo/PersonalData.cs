@@ -6,7 +6,7 @@ namespace CourseWork
 {
     class PersonalData
     {
-        public string Name { get; set; }
+        public string Login { get; set; }
 
         public string Password { get; set; }
 
@@ -19,7 +19,7 @@ namespace CourseWork
 
         public PersonalData()
         {
-            this.Name = "N/A";
+            this.Login = "N/A";
             this.Password = "N/A";
             this.Age = 0;
             this.PnoneNumber = "N/A";
@@ -32,7 +32,7 @@ namespace CourseWork
         public bool CheckForLogin(string name, string password)
         {
             bool res = false;
-            if(this.Name == name && this.Password == password)
+            if(this.Login == name && this.Password == password)
             {
                 res = true;
             }    

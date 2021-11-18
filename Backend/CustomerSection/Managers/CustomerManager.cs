@@ -54,6 +54,48 @@ namespace CourseWork
             }
             return null;
         }
+        //отримати Ід по імені
+        public int GetCustomerIdByLogin(string login)
+        {
+            int res = -1;
+            foreach(Customer cus in customers)
+            {
+                if(cus.PersonalData.Login == login)
+                {
+                    res = cus.CustomerId;
+                    break;
+                }
+            }
+            return res;
+        }
+        //пеервіряє чи є вже такий покупець з таким ім'ям
+        public bool IfHasSuchCustomerLogin(string name)
+        {
+            bool res = false;
+            foreach (Customer cus in customers)
+            {
+                if (cus.PersonalData.Login == name)
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
+        }
+        public bool IfCorrectLoginPassword(string login, string password)
+        {
+            bool res = false;
+            foreach(Customer cus in customers)
+            {
+                if(cus.PersonalData.Login == login &&
+                    cus.PersonalData.Password == password)
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
+        }
         //додати покупця
         public void AddCustomer(Customer cust)
         {

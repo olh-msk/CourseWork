@@ -14,12 +14,9 @@ using System.Windows.Shapes;
 
 namespace CourseWork
 {
-    /// <summary>
-    /// Interaction logic for LogIn.xaml
-    /// </summary>
-    public partial class LogIn : Window
+    public partial class CustomerRegistrationWindow : Window
     {
-        public LogIn()
+        public CustomerRegistrationWindow()
         {
             InitializeComponent();
         }

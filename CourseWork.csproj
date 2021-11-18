@@ -114,13 +114,16 @@
     <Compile Include="Backend\StorageSection\ProductFactories.cs" />
     <Compile Include="Backend\StorageSection\StorageManager.cs" />
     <Compile Include="Backend\StorageSection\Storages.cs" />
+    <Compile Include="CustomerRegistrationWindow.xaml.cs">
+      <DependentUpon>CustomerRegistrationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="LogIn.xaml">
+    <Page Include="CustomerRegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,9 +138,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogIn.xaml.cs">
-      <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -12,10 +12,11 @@ namespace CourseWork
     {
         private static CustomerMediator instance;
         
+        public CustomerManager CustomerManager { get; set; }
 
         private CustomerMediator()
         {
-
+            this.CustomerManager = CustomerManager.Instance();
         }
         public static CustomerMediator Instance()
         {
@@ -26,7 +27,17 @@ namespace CourseWork
             return instance;
         }
 
-
+        //перенаправляє запит від форми
+        //чи правильно ввели логін і пароль
+        public bool IfCorrectLoginPassword(string login, string password)
+        {
+            return this.CustomerManager.IfCorrectLoginPassword(login,password);
+        }
+        //отримати ід покупця
+        public int GetCustomerIdByLogin(string login)
+        {
+            return this.CustomerManager.GetCustomerIdByLogin(login);
+        }
     }
     #endregion
 }
