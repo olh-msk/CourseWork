@@ -43,5 +43,6 @@ namespace CourseWork
         {
             ModeratorManager.ReadModersFromFile(path);
         }
+
     }
 }

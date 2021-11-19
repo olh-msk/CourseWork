@@ -210,7 +210,8 @@ namespace CourseWork
             //якщо  є кількість на складі
             if(CheckProductMinAmount(prodID))
             {
-                GetProductByID(prodID).Amount--;
+                Product prod = GetProductByID(prodID);
+                prod.Amount--;
             }
         }
         //вертається продукт зі складу

@@ -92,6 +92,7 @@
     <Compile Include="Backend\DiscountSection\Discounts\CustomerDiscount.cs" />
     <Compile Include="Backend\DiscountSection\Discounts\Discount.cs" />
     <Compile Include="Backend\DiscountSection\Discounts\ProductDiscount.cs" />
+    <Compile Include="Backend\Mediators\AdministratorMediator.cs" />
     <Compile Include="Backend\Mediators\CustomerMediator.cs" />
     <Compile Include="Backend\CustomerSection\CustomerInfo\Address.cs" />
     <Compile Include="Backend\CustomerSection\CustomerInfo\Order.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Backend\CustomerSection\Customers\VIPCustomer.cs" />
     <Compile Include="Backend\CustomerSection\Managers\CustomerManager.cs" />
     <Compile Include="Backend\CustomerSection\Managers\OrderManager.cs" />
+    <Compile Include="Backend\Mediators\ModeratorMediator.cs" />
     <Compile Include="Backend\Mediators\StaffMediator.cs" />
     <Compile Include="Backend\ShopSection\Shop.cs" />
     <Compile Include="Backend\ShopSection\ShopFacade.cs" />
@@ -127,8 +129,17 @@
     <Compile Include="CustomerCart.xaml.cs">
       <DependentUpon>CustomerCart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerProfile.xaml.cs">
+      <DependentUpon>CustomerProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerRegistrationWindow.xaml.cs">
       <DependentUpon>CustomerRegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\ModeratorWindows\ModeratorWindow.xaml.cs">
+      <DependentUpon>ModeratorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\UserCart\CustomerCart.xaml.cs">
+      <DependentUpon>CustomerCart.xaml</DependentUpon>
     </Compile>
     <Compile Include="HowManyProductsAddToCart.xaml.cs">
       <DependentUpon>HowManyProductsAddToCart.xaml</DependentUpon>
@@ -162,7 +173,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomerProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerRegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\ModeratorWindows\ModeratorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\UserCart\CustomerCart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

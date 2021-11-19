@@ -16,11 +16,9 @@ namespace CourseWork
 {
     public partial class LogInWindow : Window
     {
-        CustomerMediator customerMediator;
 
         public LogInWindow()
         {
-            customerMediator = CustomerMediator.Instance();
             InitializeComponent();
         }
 
@@ -42,9 +40,9 @@ namespace CourseWork
             //виконуємо різні операції під різні ролі
             if(role == "Customer")
             {
-                if (customerMediator.IfCorrectLoginPassword(login, password))
+                if (CustomerMediator.Instance().IfCorrectLoginPassword(login, password))
                 {
-                    int customerID = customerMediator.GetCustomerIdByLogin(login);
+                    int customerID = CustomerMediator.Instance().GetCustomerIdByLogin(login);
                     if (customerID == -1)
                     {
                         MessageBox.Show("Wrong Input Data:\nDon`t have such customer",
@@ -55,10 +53,6 @@ namespace CourseWork
                     }
                     textBoxLogin.ToolTip = "";
                     PassBox.ToolTip = "";
-                    MessageBox.Show($"Welcome {login}",
-                                    "Syccess",
-                                     MessageBoxButton.OK,
-                                        MessageBoxImage.Information);
                     ShopWindow window = new ShopWindow(customerID);
                     window.Show();
                     this.Close();
@@ -75,8 +69,38 @@ namespace CourseWork
                         MessageBoxImage.Information);
                     return;
                 }
-
-
+            }
+            else if(role == "Admin")
+            {
+                if (AdministratorMediator.Instance().IfCorrectLoginPassword(login, password))
+                {
+                    int adminID = AdministratorMediator.Instance().GetAdminIdByLogin(login);
+                    if (adminID == -1)
+                    {
+                        MessageBox.Show("Wrong Input Data:\nDon`t have such customer",
+                            "Don`t have such customer",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        return;
+                    }
+                    textBoxLogin.ToolTip = "";
+                    PassBox.ToolTip = "";
+                    AdministratorWindow window = new AdministratorWindow(adminID);
+                    window.Show();
+                    this.Close();
+                }
+                //якщо неправильний логін чи пароль, то виводимо
+                //підказку на це
+                else
+                {
+                    textBoxLogin.ToolTip = "Try Again";
+                    PassBox.ToolTip = "Try Again";
+                    MessageBox.Show("Wrong Login or Password",
+                        "Check your data",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    return;
+                }
             }
         }
         //хочуть зареєструватись-----------------

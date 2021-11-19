@@ -1,0 +1,80 @@
+﻿<Window x:Class="CourseWork.CustomerProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork"
+        ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="CustomerProfile" Height="425" Width="595">
+    <Grid Background="#ffdadada">
+        <!--об'єкт, що буде мінятися від ширини вікна-->
+        <!--Ширина і відступи вказуються у пікселях-->
+        <!--Corner radius заукруглення кутів-->
+        <!--Border - свого роду плита, місце, де можна виставляти об'єкти-->
+        <Border MinWidth="400" Margin="15" Background="white"
+                VerticalAlignment="Center" Padding="30" MaxWidth="550"
+                CornerRadius="20">
+            <!--Для створення ефектів-->
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <!--StackPanel позволяє створювати об'єкти всередині нього
+            вони будуть займати всю його ширину-->
+            <StackPanel>
+                <!--Margin може приймати 1 загальний або окемо відсдтуви від кожного краю-->
+                <TextBlock x:Name="TextBlockCurentCustomer" Text="Your profile" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Center" Margin="0,0,0,20"/>
+                <Grid>
+                    <TextBlock Text="Login:" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Left"/>
+                    <TextBlock x:Name="TextBlockCustomerLogin" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Left" Margin="100,0,0,20"/>
+
+                    <TextBlock Text="Money:" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Right" Margin="0,0,100,0"/>
+                    <TextBlock x:Name="TextBlockCustomerMoney" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Right" Margin="0,0,0,20"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33*"/>
+                        <ColumnDefinition Width="457*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Password:" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Left" Grid.ColumnSpan="2" Margin="0,0,-0.6,-0.6"/>
+                    <TextBlock x:Name="TextBlockCustomerPassword" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Left" Margin="66.967,0,-0.6,19.4" Grid.Column="1"/>
+
+                    <TextBlock Text="Status:" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Right" Margin="0,0,109.4,-0.6" Grid.ColumnSpan="2"/>
+                    <TextBlock x:Name="TextBlockCustomerStatus" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Right" Margin="0,0,-0.6,19.4" Grid.ColumnSpan="2"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Email" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Left"/>
+                    <TextBlock x:Name="TextBlockCustomerEmail" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Left" Margin="100,0,0,20"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Age" FontSize="20" FontWeight="DemiBold"
+                            TextAlignment="Left"/>
+                    <TextBlock x:Name="TextBlockCustomerAge" Text="field" FontSize="20" FontWeight="Normal"
+                            TextAlignment="Left" Margin="100,0,0,10"/>
+                </Grid>
+
+                <!--анамацію вручну можна добавити-->
+                <Grid>
+                    <Button x:Name="ButtonLogChangeInfo" Content="Change information" Margin="0,0,10,0" Width="160" HorizontalAlignment="Left"/>
+                    <Button x:Name="ButtonAddMoney" Content="Add money" Margin="40 20" Width="110"
+                            Click="ButtonAddMoney_Click"/>
+                    <Button x:Name="ButtonExit" Content="Exit" Margin="40 20" Width="100" HorizontalAlignment="Right"
+                            Click="ButtonExit_Click"/>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

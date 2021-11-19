@@ -57,6 +57,10 @@ namespace CourseWork
         {
             CustomerManager.Instance().ReadCustomersFromTxtFile(path);
         }
+        public void AddProductToCustomerCart(int customerID, int productID, int amount)
+        {
+            CustomerManager.GetCustomerById(customerID).ShoppingCart.AddProductToCart(productID,amount);
+        }
     }
     #endregion
 }

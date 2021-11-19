@@ -48,12 +48,10 @@ namespace CourseWork
                             "Bye",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+            LogInWindow window = new LogInWindow();
+            window.Show();
             this.Close();
-        }
 
-        private void ComboBoxProductType_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine("Selected: {0}", ComboBoxProductType.Text);
         }
 
         private void ComboBoxProductType_DropDownClosed(object sender, EventArgs e)
@@ -67,50 +65,10 @@ namespace CourseWork
             {
                 return;
             }
-            if(type == "Meat")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().MeatStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                } 
-            }
-            else if(type== "Dairy")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().DairyStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            else if (type == "Household")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().HouseholdStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
+            RefreshTable(type);
             
-            //корегування інформації, добавляння kg, $ і дати
-            for(int i =0; i<ProductsGridTable.Items.Count;i++)
-            {
-                //обов'язково перевести в текст блок, щоб отримати дані як string
-                TextBlock textBlock = GetCell(i, 0).Content as TextBlock;
-                int prodID = Int32.Parse(textBlock.Text);
-                //оновлення ціни
-                DataGridCell cell1 = GetCell(i, 2);
-                cell1.Content = string.Format("{0:f2}$", StorageMediator.Instance().GetProductById(prodID).Price);
-                //оновлення ваги
-                DataGridCell cell2 = GetCell(i, 3);
-                cell2.Content = string.Format("{0:f2}kg", StorageMediator.Instance().GetProductById(prodID).Weight);
-                //оновлення терміну придатності
-                DataGridCell cell3 = GetCell(i, 5);
-                cell3.Content = string.Format("{0}", StorageMediator.Instance().GetProductById(prodID).ExpirationDate.ToShortDateString());
-            }
-
             currentStorage = type;
-            Console.WriteLine("Current: {0}", type);
+
         }
         private void ClearGridTable()
         {
@@ -178,9 +136,63 @@ namespace CourseWork
             {
                 return;
             }
+            if(ProductsGridTable.Items.Count == 0)
+            {
+                return;
+            }
             object item = ProductsGridTable.SelectedItem;
             string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             selectedProductID = Int32.Parse(ID);
+        }
+        //оновити дані таблиці----------------------
+        public void RefreshTable(string type)
+        {
+            ClearGridTable();
+            if (type == "Meat")
+            {
+                ClearGridTable();
+                foreach (Product prod in StorageManager.Instance().MeatStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+            else if (type == "Dairy")
+            {
+                ClearGridTable();
+                foreach (Product prod in StorageManager.Instance().DairyStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+            else if (type == "Household")
+            {
+                ClearGridTable();
+                foreach (Product prod in StorageManager.Instance().HouseholdStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+            CorrectTableData();
+
+        }
+        public void CorrectTableData()
+        {
+            //корегування інформації, добавляння kg, $ і дати
+            for (int i = 0; i < ProductsGridTable.Items.Count; i++)
+            {
+                //обов'язково перевести в текст блок, щоб отримати дані як string
+                TextBlock textBlock = GetCell(i, 0).Content as TextBlock;
+                int prodID = Int32.Parse(textBlock.Text);
+                //оновлення ціни
+                DataGridCell cell1 = GetCell(i, 2);
+                cell1.Content = string.Format("{0:f2}$", StorageMediator.Instance().GetProductById(prodID).Price);
+                //оновлення ваги
+                DataGridCell cell2 = GetCell(i, 3);
+                cell2.Content = string.Format("{0:f2}kg", StorageMediator.Instance().GetProductById(prodID).Weight);
+                //оновлення терміну придатності
+                DataGridCell cell3 = GetCell(i, 5);
+                cell3.Content = string.Format("{0}", StorageMediator.Instance().GetProductById(prodID).ExpirationDate.ToShortDateString());
+            }
         }
 
         private void ButtonAddToCartProduct_Click(object sender, RoutedEventArgs e)
@@ -201,12 +213,23 @@ namespace CourseWork
             //вікрите нше вікно
             windowAmount.ShowDialog();
 
-            //takenAmount = taskViewModel.selectedAmount;
+            CustomerMediator.Instance().AddProductToCustomerCart(customerID,selectedProductID, selectedAmount[0]);
+            //оновити баблицю
+            RefreshTable(currentStorage);
+            //збиваємо кількість
+            selectedAmount[0] = 0;
+        }
 
-            
-            
+        //відкрити мій профіль
+        private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerProfile window = new CustomerProfile(customerID);
+            window.ShowDialog();
+        }
 
-            MessageBox.Show(selectedAmount[0].ToString());
+        //побачити мою корзину
+        private void ButtonSeeMyCart_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

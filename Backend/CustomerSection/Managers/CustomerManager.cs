@@ -168,10 +168,6 @@ namespace CourseWork
                     AddCustomer(cus);
                 }
             }
-            foreach(Customer cus in customers)
-            {
-                Console.WriteLine("Id: {0}",cus.CustomerId);
-            }
         }
     }
 }

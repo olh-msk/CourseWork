@@ -116,6 +116,35 @@ namespace CourseWork
                 }
             }    
         }
+
+        public bool IfCorrectLoginPassword(string login, string password)
+        {
+            bool res = false;
+            foreach (Administrator admin in administrators)
+            {
+                if (admin.Login == login &&
+                    admin.Password == password)
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
+        }
+
+        public int GetAdministratorIdByLogin(string login)
+        {
+            int res = -1;
+            foreach (Administrator admin in administrators)
+            {
+                if (admin.Login == login)
+                {
+                    res = admin.AdministratorId;
+                    break;
+                }
+            }
+            return res;
+        }
     }
     #endregion
 }

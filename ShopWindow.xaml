@@ -33,26 +33,35 @@
                 </Grid>
 
                 <StackPanel>
+                    <ComboBox x:Name="ComboBoxProductType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100"
+                              DropDownClosed="ComboBoxProductType_DropDownClosed" Margin="0,0,0.2,0">
+                        <ComboBoxItem Content="Meat"/>
+                        <ComboBoxItem Content="Dairy"/>
+                        <ComboBoxItem Content="Household"/>
+                    </ComboBox>
                     <DataGrid x:Name="ProductsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged">
+                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="562">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Product ID" Width="100" Binding="{Binding ProductId}"/>
                             <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Price" Width="70" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Price" Width="80" Binding="{Binding Price}"/>
                             <DataGridTextColumn Header="Weight" Width="80" Binding="{Binding Weight}"/>
                             <DataGridTextColumn Header="Amount" Width="80" Binding="{Binding Amount}"/>
                             <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDateString}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <ComboBox x:Name="ComboBoxProductType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100"
-                              DropDownClosed="ComboBoxProductType_DropDownClosed">
-                        <ComboBoxItem>Meat</ComboBoxItem>
-                        <ComboBoxItem>Dairy</ComboBoxItem>
-                        <ComboBoxItem>Household</ComboBoxItem>
-                    </ComboBox>
                 </StackPanel>
-                <Button x:Name="ButtonAddToCartProduct" Content="Add to cart" Width="150" Margin="20 10"
-                        Click="ButtonAddToCartProduct_Click"/>
+                <Grid>
+                    <Button x:Name="ButtonAddToCartProduct" Content="Add to cart" Width="110" Margin="20 10"
+                        Click="ButtonAddToCartProduct_Click" HorizontalAlignment="Left"/>
+                    <Button x:Name="ButtonSeeMyCart" Content="See my Cart" Width="110"
+                        HorizontalAlignment="Left" Margin="150,0,0,0"
+                            Click="ButtonSeeMyCart_Click"/>
+                    <Button x:Name="ButtonMyProfile" Content="My Profile" Width="110"
+                        HorizontalAlignment="Left" Margin="280,0,0,0"
+                            Click="ButtonMyProfile_Click"/>
+                </Grid>
+
             </StackPanel>
         </Border>
     </Grid>

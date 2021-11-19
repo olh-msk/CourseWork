@@ -1,13 +1,13 @@
-﻿<Window x:Class="CourseWork.AdministratorWindow"
+﻿<Window x:Class="CourseWork.Frontend.ModeratorWindows.ModeratorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourseWork"
+        xmlns:local="clr-namespace:CourseWork.Frontend.ModeratorWindows"
+        mc:Ignorable="d"
         ResizeMode="NoResize"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="AdministratorWindow" Height="450" Width="800">
+        Title="ModeratorWindow" Height="450" Width="800">
     <Grid Background="#ffdadada">
         <Border MinWidth="400" MinHeight="400" Margin="15" Background="white"
                 VerticalAlignment="Center" Padding="30"
@@ -29,21 +29,19 @@
                 </Grid>
 
                 <StackPanel>
-                    <ComboBox x:Name="ComboBoxProductType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100"
-                              DropDownClosed="ComboBoxProductType_DropDownClosed" Margin="0,0,0.2,0">
-                        <ComboBoxItem Content="Meat"/>
-                        <ComboBoxItem Content="Dairy"/>
-                        <ComboBoxItem Content="Household"/>
-                    </ComboBox>
-                    <DataGrid x:Name="ProductsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="568">
+                    <DataGrid x:Name="CustomersGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
+                              BorderBrush="Black" SelectionChanged="CustomersGridTable_SelectionChanged" Width="693">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Product ID" Width="100" Binding="{Binding ProductId}"/>
-                            <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Price" Width="80" Binding="{Binding Price}"/>
-                            <DataGridTextColumn Header="Weight" Width="80" Binding="{Binding Weight}"/>
-                            <DataGridTextColumn Header="Amount" Width="80" Binding="{Binding Amount}"/>
-                            <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDateString}"/>
+                            <DataGridTextColumn Header="Customer ID" Width="110" Binding="{Binding ProductId}"/>
+                            <DataGridTextColumn Header="Login" Width="80" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Email" Width="80" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Status" Width="80" Binding="{Binding Weight}"/>
+                            <DataGridTextColumn Header="Phone" Width="80" Binding="{Binding Amount}"/>
+                            <DataGridTextColumn Header="Street" Width="80" Binding="{Binding ExpirationDateString}"/>
+                            <DataGridTextColumn Header="City" Binding="{Binding ExpirationDateString}"/>
+                            <DataGridTextColumn Header="Country" Binding="{Binding ExpirationDateString}"/>
+                            <DataGridTextColumn Header="Zipcode" Binding="{Binding ExpirationDateString}"/>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

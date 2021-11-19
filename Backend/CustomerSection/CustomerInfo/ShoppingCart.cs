@@ -38,7 +38,6 @@ namespace CourseWork
                         productsInCart[prodID]++;
                     }
                 }
-                
             }
         }
         public void RemoveProductFormCart(int prodID, int amount = 1)

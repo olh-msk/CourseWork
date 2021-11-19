@@ -13,40 +13,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CourseWork
+namespace CourseWork.Frontend.UserCart
 {
-
-    public partial class AdministratorWindow : Window
+    public partial class CustomerCart : Window
     {
-        int admodistratorID;
+        int customerID;
         int selectedProductID;
-        string currentStorage;
-        public AdministratorWindow()
+        public CustomerCart()
         {
             InitializeComponent();
         }
-        public AdministratorWindow(int adminID):this()
+        public CustomerCart(int cusID):this()
         {
-            admodistratorID = adminID;
-            TextBlockLogin.Text = AdministratorMediator.Instance().GetAdministratorById(adminID).Login;
+            customerID = cusID;
         }
 
-        //обрали інший тип продукту
-        private void ComboBoxProductType_DropDownClosed(object sender, EventArgs e)
+        private void ButtonRemoveFromCart_Click(object sender, RoutedEventArgs e)
         {
-            //міняємо ід вибраного прудукта назад на 0
-            selectedProductID = 0;
 
-            string type = ComboBoxProductType.Text;
-            //якщо ніочго не вибрали, то нічого не робити
-            if (type == "")
+        }
+
+        private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProductsGridTable.Items.Count == 0)
             {
                 return;
             }
-            RefreshTable(type);
-
-            currentStorage = type;
-
+            object item = ProductsGridTable.SelectedItem;
+            string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            selectedProductID = Int32.Parse(ID);
         }
         public void RefreshTable(string type)
         {
@@ -154,39 +149,6 @@ namespace CourseWork
             //очищення таблиці
             ProductsGridTable.Items.Clear();
             ProductsGridTable.Items.Refresh();
-        }
-
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Goodbye",
-                            "Bye",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-            
-            LogInWindow window = new LogInWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //необхідна перевірка, щоб не вийшо помилки
-            if (currentStorage != ComboBoxProductType.Text)
-            {
-                return;
-            }
-            if (ProductsGridTable.Items.Count == 0)
-            {
-                return;
-            }
-            object item = ProductsGridTable.SelectedItem;
-            string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            selectedProductID = Int32.Parse(ID);
-        }
-
-        private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
