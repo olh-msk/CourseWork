@@ -18,6 +18,13 @@ namespace CourseWork
     public partial class ShopWindow : Window
     {
         int customerID;
+        int selectedProductID;
+
+        List<int> selectedAmount;
+
+
+        string currentStorage;
+
         public ShopWindow()
         {
             InitializeComponent();
@@ -26,14 +33,14 @@ namespace CourseWork
         public ShopWindow(int cusID) : this()
         {
             customerID = cusID;
+            selectedProductID = 0;
+            selectedAmount = new List<int>();
+            selectedAmount.Add(0);
+            currentStorage = "N/A";
 
-
+            TextBlockLogin.Text = CustomerMediator.Instance().GetCustomerById(customerID).PersonalData.Login;
         }
 
-        private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +58,9 @@ namespace CourseWork
 
         private void ComboBoxProductType_DropDownClosed(object sender, EventArgs e)
         {
+            //міняємо ід вибраного прудукта назад на 0
+            selectedProductID = 0;
+
             string type = ComboBoxProductType.Text;
             //якщо ніочго не вибрали, то нічого не робити
             if(type == "")
@@ -98,7 +108,8 @@ namespace CourseWork
                 DataGridCell cell3 = GetCell(i, 5);
                 cell3.Content = string.Format("{0}", StorageMediator.Instance().GetProductById(prodID).ExpirationDate.ToShortDateString());
             }
-            
+
+            currentStorage = type;
             Console.WriteLine("Current: {0}", type);
         }
         private void ClearGridTable()
@@ -108,7 +119,7 @@ namespace CourseWork
             ProductsGridTable.Items.Refresh();
         }
 
-        //допоміжні функції, щоб отримати клітинку по індексу
+        //допоміжні функції, щоб отримати клітинку по індексу--------------------
         public DataGridCell GetCell(int row, int column)
         {
             DataGridRow rowData = GetRow(row);
@@ -157,12 +168,46 @@ namespace CourseWork
             }
             return child;
         }
+        //-------------------
+
         //коли натиснули на клітинку, тобто добавили продукт у корзину
         private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //необхідна перевірка, щоб не вийшо помилки
+            if(currentStorage != ComboBoxProductType.Text)
+            {
+                return;
+            }
             object item = ProductsGridTable.SelectedItem;
             string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            MessageBox.Show(ID);
+            selectedProductID = Int32.Parse(ID);
+        }
+
+        private void ButtonAddToCartProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if(selectedProductID == 0)
+            {
+                MessageBox.Show("Select Product to add",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+
+            //питаємось, скільк покупець хоче взяти
+            HowManyProductsAddToCart windowAmount = new HowManyProductsAddToCart(selectedAmount, selectedProductID);
+            var taskViewModel = (HowManyProductsAddToCart)windowAmount.DataContext;
+            //така функція позволить чекати, поки є 
+            //вікрите нше вікно
+            windowAmount.ShowDialog();
+
+            //takenAmount = taskViewModel.selectedAmount;
+
+            
+            
+
+            MessageBox.Show(selectedAmount[0].ToString());
+
         }
     }
 }

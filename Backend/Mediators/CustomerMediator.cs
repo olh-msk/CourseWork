@@ -49,7 +49,10 @@ namespace CourseWork
             cus.PersonalData = customerData;
             CustomerManager.AddCustomer(cus);
         }
-
+        public Customer GetCustomerById(int cusID)
+        {
+            return CustomerManager.GetCustomerById(cusID);
+        }
         public void ReadCustomersFromTxtFile(string path)
         {
             CustomerManager.Instance().ReadCustomersFromTxtFile(path);
