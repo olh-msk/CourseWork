@@ -11,9 +11,10 @@ namespace CourseWork
     }
     interface IOperationModeratorCreateDiscounts
     {
-        void CreateCustomerDiscount(int cusID);
-        void CreateProductDiscount(int prodID);
+        void CreateCustomerDiscount(int cusID, int interest);
+        void CreateProductDiscount(int prodID, int interest);
     }
+
     class Moderator : Employee, IOperationModeratorCreateDiscounts,
                                 IOperationModeratorGetCustomerOrderList
     {
@@ -27,14 +28,14 @@ namespace CourseWork
             this.ModeratorId = moderatorNextUniqueId++;
         }
         //створити знижки передаємо на посередника
-        public void CreateCustomerDiscount(int cusID)
+        public void CreateCustomerDiscount(int cusID, int interest = 10)
         {
-            ShopMediator.Instance().ModeratorAddNewCustomerDiscount(cusID);
+            ShopMediator.Instance().ModeratorAddNewCustomerDiscount(cusID, interest);
         }
 
-        public void CreateProductDiscount(int prodID)
+        public void CreateProductDiscount(int prodID, int interest = 15)
         {
-            ShopMediator.Instance().ModeratorAddNewProductDiscount(prodID);
+            ShopMediator.Instance().ModeratorAddNewProductDiscount(prodID, interest);
         }
 
         public List<Order> GetCustomerOrders(int cusID)

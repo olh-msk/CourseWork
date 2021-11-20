@@ -184,5 +184,19 @@ namespace CourseWork
         {
             return customers.GetEnumerator();
         }
+
+        public string GetCustomerLoginById(int cusID)
+        {
+            string res = "N/A";
+            foreach(Customer cus in customers)
+            {
+                if(cus.CustomerId == cusID)
+                {
+                    res = cus.PersonalData.Login;
+                    break;
+                }
+            }
+            return res;
+        }
     }
 }

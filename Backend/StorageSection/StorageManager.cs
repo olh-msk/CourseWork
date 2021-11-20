@@ -198,6 +198,36 @@ namespace CourseWork
                 }
             }
         }
+
+        public string GetProductNameById(int prodID)
+        {
+            string res = "N/A";
+            foreach (MeatProduct prod in MeatStorage)
+            {
+                if (prod.ProductId == prodID)
+                {
+                    res = prod.Name;
+                    return res;
+                }
+            }
+            foreach (DairyProduct prod in DairyStorage)
+            {
+                if (prod.ProductId == prodID)
+                {
+                    res = prod.Name;
+                    return res;
+                }
+            }
+            foreach (HouseholdProduct prod in HouseholdStorage)
+            {
+                if (prod.ProductId == prodID)
+                {
+                    res = prod.Name;
+                    return res;
+                }
+            }
+            return res;
+        }
     }
     #endregion
 }

@@ -18,9 +18,9 @@ namespace CourseWork
     {
         int moderatorID;
 
-        string currentStorage;
-
         int selectedProductDiscountID;
+        int selectedProdID;
+
         public ModeratorWindow()
         {
             InitializeComponent();
@@ -30,9 +30,8 @@ namespace CourseWork
             moderatorID = moderID;
             TextBlockLogin.Text = ModeratorManager.Instance().GetModeratorById(moderatorID).Login;
             selectedProductDiscountID = 0;
-            currentStorage = "";
-
-
+            selectedProdID = 0;
+            RefreshTable();
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -46,26 +45,19 @@ namespace CourseWork
             this.Close();
         }
 
-        private void ComboBoxProductType_DropDownClosed(object sender, EventArgs e)
+        private void ProductsDiscountsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //міняємо ід вибраного прудукта назад на 0
-            selectedProductDiscountID = 0;
-
-            string type = ComboBoxProductType.Text;
-            //якщо ніочго не вибрали, то нічого не робити
-            if (type == "")
+            //необхідна перевірка, щоб не вийшо помилки
+            if (ProductsDiscountsGridTable.Items.Count == 0)
             {
                 return;
             }
-            //оновити таблицю відносно вибраного типу
-            RefreshTable(type);
-
-            currentStorage = type;
-        }
-
-        private void ProductsDiscountsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            Console.WriteLine("Work");
+            object item = ProductsDiscountsGridTable.SelectedItem;
+            string ID = (ProductsDiscountsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            string prodId = (ProductsDiscountsGridTable.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            selectedProductDiscountID = Int32.Parse(ID);
+            selectedProdID = Int32.Parse(prodId);
         }
 
         private void ButtonCustomerDiscounts_Click(object sender, RoutedEventArgs e)
@@ -77,12 +69,34 @@ namespace CourseWork
         {
             CourseWork.Frontend.Manager.CreateProductDiscount window = new CourseWork.Frontend.Manager.CreateProductDiscount(moderatorID);
             window.ShowDialog();
-            RefreshTable(currentStorage);
+            RefreshTable();
         }
 
         private void ButtonRemoveProdDiscount_Click(object sender, RoutedEventArgs e)
         {
+            if(selectedProductDiscountID == 0)
+            {
+                MessageBox.Show("select discount, need discount id",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            if(selectedProdID == 0)
+            {
+                MessageBox.Show("select discount, need prod id",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
 
+
+            ModeratorMediator.Instance().RemoveProductDiscount(moderatorID, selectedProdID);
+
+            RefreshTable();
+            selectedProductDiscountID = 0;
+            selectedProdID = 0;
         }
 
         private void ButtonChangeProdDiscount_Click(object sender, RoutedEventArgs e)
@@ -102,16 +116,9 @@ namespace CourseWork
             ProductsDiscountsGridTable.Items.Refresh();
         }
         //оновити дані таблиці----------------------
-        public void RefreshTable(string type)
+        public void RefreshTable()
         {
-            if (type == "")
-            {
-                return;
-            }
-
             ClearGridTable();
-
-
             foreach (var pair in ProductDiscountManager.Instance())
             {
                 Product prod = StorageMediator.Instance().GetProductById(pair.Key);
@@ -119,21 +126,6 @@ namespace CourseWork
 
                 ProductsDiscountsGridTable.Items.Add(pair);
             }
-        }
-        private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //необхідна перевірка, щоб не вийшо помилки
-            if (currentStorage != ComboBoxProductType.Text)
-            {
-                return;
-            }
-            if (ProductsDiscountsGridTable.Items.Count == 0)
-            {
-                return;
-            }
-            object item = ProductsDiscountsGridTable.SelectedItem;
-            string ID = (ProductsDiscountsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            selectedProductDiscountID = Int32.Parse(ID);
         }
     }
 }

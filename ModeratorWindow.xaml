@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="ModeratorWindow" Height="424.752" Width="599.505">
+        Title="ModeratorWindow" Height="403.725" Width="755.107">
     <Grid Background="#ffdadada">
         <Border MinWidth="400" MinHeight="400" Margin="15" Background="white"
                 VerticalAlignment="Center" Padding="30"
@@ -26,19 +26,14 @@
                 </Grid>
 
                 <StackPanel>
-                    <ComboBox x:Name="ComboBoxProductType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="84"
-                              DropDownClosed="ComboBoxProductType_DropDownClosed" Margin="0,0,10,20">
-                        <ComboBoxItem Content="Meat"/>
-                        <ComboBoxItem Content="Dairy"/>
-                        <ComboBoxItem Content="Household"/>
-                    </ComboBox>
                     <Grid>
                         <DataGrid x:Name="ProductsDiscountsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsDiscountsGridTable_SelectionChanged" Width="309">
+                              BorderBrush="Black" SelectionChanged="ProductsDiscountsGridTable_SelectionChanged" Width="454" Margin="0,9,0,9.4">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Discount ID" Width="110" Binding="{Binding Value.DiscountId}"/>
-                                <DataGridTextColumn Header="Product name" Width="120" Binding="{Binding StorageManager.Instance().GetProductById(Key).Name}"/>
-                                <DataGridTextColumn Header="Interest" Width="120" Binding="{Binding Value.Interest}"/>
+                                <DataGridTextColumn Header="Product ID" Width="110" Binding="{Binding Key}"/>
+                                <DataGridTextColumn Header="Product name" Width="120" Binding="{Binding Value.ProductName}"/>
+                                <DataGridTextColumn Header="Interest(%)" Width="130" Binding="{Binding Value.Interest}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <StackPanel>

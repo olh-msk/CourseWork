@@ -19,6 +19,7 @@ namespace CourseWork.Frontend.Manager
         int moderatorId;
         int selectedProductID;
         string currentStorage;
+        int interest;
         public CreateProductDiscount()
         {
             InitializeComponent();
@@ -29,11 +30,43 @@ namespace CourseWork.Frontend.Manager
             moderatorId = moderId;
             selectedProductID = 0;
             currentStorage = "";
+            interest = 0;
+
+            for(int i =1; i<=80; i++)
+            {
+                ComboBoxProductInterest.Items.Add(i);
+            }
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            if(selectedProductID == 0)
+            {
+                MessageBox.Show("Select Product",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            if(interest == 0)
+            {
+                MessageBox.Show("select interest",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            if(ProductDiscountManager.Instance().IfProductHasDiscount(selectedProductID))
+            {
+                MessageBox.Show("Product already has discount",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            //передаємо сигнал медіатору
+            ModeratorMediator.Instance().CreateNewProductDiscount(moderatorId,selectedProductID,
+                                                                 interest);
         }
 
         //обрали інший тип продукту
@@ -100,5 +133,18 @@ namespace CourseWork.Frontend.Manager
             selectedProductID = Int32.Parse(ID);
         }
 
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ComboBoxProductInterest_DropDownClosed(object sender, EventArgs e)
+        {
+            if(ComboBoxProductInterest.Text =="")
+            {
+                return;
+            }
+            interest = Int32.Parse(ComboBoxProductInterest.Text);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 namespace CourseWork
 {
     #region [Customer Discount Manager]
+
     interface IOperationSetGetCustomerDiscount
     {
         CustomerDiscount GetCustomerDiscount(int cusID);

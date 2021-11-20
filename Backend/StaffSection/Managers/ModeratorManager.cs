@@ -145,6 +145,15 @@ namespace CourseWork
             }
             return res;
         }
+        public void CreateNewProductDiscount(int moderatorId, int productID, int interest)
+        {
+            Moderator moder = GetModeratorById(moderatorId);
+            moder.CreateProductDiscount(productID, interest);
+        }
+        public void RemoveProductDiscount(int moderatorID, int prodID)
+        {
+            ProductDiscountManager.Instance().RemoveDiscountFromProduct(prodID);
+        }
     }
     #endregion
 }

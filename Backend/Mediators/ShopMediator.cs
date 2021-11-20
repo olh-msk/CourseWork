@@ -210,15 +210,19 @@ namespace CourseWork
 
         //модератор------------------------
         //створює знижки
-        public void ModeratorAddNewCustomerDiscount(int cusID)
+        public void ModeratorAddNewCustomerDiscount(int cusID, int interest)
         {
             CustomerDiscount disc = CustomerDiscountManager.Instance().CreateNewCustomerDiscount();
+            disc.Interest = interest / 1.0;
+            disc.CustomerName = CustomerManager.Instance().GetCustomerLoginById(cusID);
             CustomerDiscountManager.Instance().SetDiscountForCustomer(cusID,disc);
         }
 
-        public void ModeratorAddNewProductDiscount(int prodID)
+        public void ModeratorAddNewProductDiscount(int prodID, int interest)
         {
             ProductDiscount disc = ProductDiscountManager.Instance().CreateNewProductDiscount();
+            disc.Interest = interest / 1.0;
+            disc.ProductName = StorageManager.Instance().GetProductNameById(prodID);
             ProductDiscountManager.Instance().SetDiscountForProduct(prodID,disc);
         }
         //отримує список замовлень--
