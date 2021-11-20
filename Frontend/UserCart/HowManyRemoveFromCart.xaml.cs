@@ -12,22 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CourseWork
+namespace CourseWork.Frontend.UserCart
 {
-    public partial class HowManyProductsAddToCart : Window
+    public partial class HowManyRemoveFromCart : Window
     {
         public List<int> selectedAmount { get; set; }
-        public HowManyProductsAddToCart()
+        public HowManyRemoveFromCart()
         {
             InitializeComponent();
         }
-        public HowManyProductsAddToCart(List<int> amount, int prodID):this()
+        public HowManyRemoveFromCart(List<int> amount, int prodID) : this()
         {
             selectedAmount = amount;
 
-            int haveInStorage = StorageMediator.Instance().GetProductById(prodID).Amount;
+            int haveInCart = StorageMediator.Instance().GetProductById(prodID).AmountCustomerHas;
 
-            for(int i = 1; i<= haveInStorage; i++)
+            for (int i = 1; i <= haveInCart; i++)
             {
                 ComboBoxAmount.Items.Add(i);
             }
@@ -38,10 +38,10 @@ namespace CourseWork
             this.Close();
         }
 
-        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
             string chosedAmount = ComboBoxAmount.Text;
-            if(chosedAmount =="")
+            if (chosedAmount == "")
             {
                 MessageBox.Show("Choose amount",
                             "Info",

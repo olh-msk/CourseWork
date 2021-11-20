@@ -34,12 +34,13 @@ namespace CourseWork
         //вертає макс кількість залежно від ід продукту----
         public int GetProductMaxAmount(int prodID)
         {
+            int res = 0;
             if(listOfProductMaxAmounts.ContainsKey(prodID))
             {
-                return listOfProductMaxAmounts[prodID];
+                res = listOfProductMaxAmounts[prodID];
             }
             //якщо нема ід тоді 0
-            return 0;
+            return res;
         }
         public void RemoveProductMaxAmount(int prodID)
         {

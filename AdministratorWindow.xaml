@@ -51,6 +51,12 @@
                     <Button x:Name="ButtonMyProfile" Content="My Profile" Width="110"
                         HorizontalAlignment="Center" Margin="0,20,0,0"
                             Click="ButtonMyProfile_Click"/>
+                    <Button x:Name="ButtonAddNewProduct" Content="Add new product" Width="150"
+                        HorizontalAlignment="Left" Margin="0,20,0,0"
+                            Click="ButtonAddNewProduct_Click"/>
+                    <Button x:Name="ButtonUserStatus" Content="Change user status" Width="160"
+                        HorizontalAlignment="Right" Margin="0,20,0,0"
+                            Click="ButtonUserStatus_Click"/>
                 </Grid>
 
             </StackPanel>

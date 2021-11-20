@@ -19,18 +19,43 @@ namespace CourseWork.Frontend.UserCart
     {
         int customerID;
         int selectedProductID;
+
+        List<int> selectedAmount;
+
         public CustomerCart()
         {
             InitializeComponent();
         }
         public CustomerCart(int cusID):this()
         {
+            selectedProductID = 0;
+            selectedAmount = new List<int>();
+            selectedAmount.Add(0);
             customerID = cusID;
+            RefreshTable();
         }
 
         private void ButtonRemoveFromCart_Click(object sender, RoutedEventArgs e)
         {
+            if(selectedProductID == 0)
+            {
+                MessageBox.Show("Select product",
+                            "Warning",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
 
+                return;
+            }
+
+            HowManyRemoveFromCart window = new HowManyRemoveFromCart(selectedAmount, selectedProductID);
+            window.ShowDialog();
+
+            //запит передається на медіатор, а той на клас
+            CustomerMediator.Instance().RemoveProductFromCustomerCart(customerID, selectedProductID,selectedAmount[0]);
+            //оновити баблицю
+            RefreshTable();
+            //збиваємо кількість
+            selectedAmount[0] = 0;
         }
 
         private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,36 +67,23 @@ namespace CourseWork.Frontend.UserCart
             object item = ProductsGridTable.SelectedItem;
             string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             selectedProductID = Int32.Parse(ID);
+
+            string Amount = (ProductsGridTable.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
         }
-        public void RefreshTable(string type)
+        public void RefreshTable()
         {
             ClearGridTable();
-            if (type == "Meat")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().MeatStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            else if (type == "Dairy")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().DairyStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            else if (type == "Household")
-            {
-                ClearGridTable();
-                foreach (Product prod in StorageManager.Instance().HouseholdStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            CorrectTableData();
+            Customer cus = CustomerMediator.Instance().GetCustomerById(customerID);
 
+            foreach (var pair in cus.ShoppingCart)
+            {
+                Product prod = StorageMediator.Instance().GetProductById(pair.Key);
+                //очищення і втсановлення кількості, що має користувач
+                prod.AmountCustomerHas = 0;
+                prod.AmountCustomerHas = cus.ShoppingCart.GetProductAmountById(prod.ProductId);
+                ProductsGridTable.Items.Add(prod);
+            }
+            //CorrectTableData();
         }
         public void CorrectTableData()
         {
@@ -149,6 +161,29 @@ namespace CourseWork.Frontend.UserCart
             //очищення таблиці
             ProductsGridTable.Items.Clear();
             ProductsGridTable.Items.Refresh();
+        }
+
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
+        //зробити замовлення і отримати чек
+        private void ButtonMakeOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if(ProductsGridTable.Items.Count==0)
+            {
+                MessageBox.Show("Add some products to cart",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+                return;
+            }
+
+
+
         }
     }
 }

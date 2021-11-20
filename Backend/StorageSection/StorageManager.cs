@@ -153,14 +153,17 @@ namespace CourseWork
                     if(prodType == "Dairy")
                     {
                         product = StorageManager.Instance().ProductFactory.CreateDairyProduct();
+                        ProductMaxAmounts.Instance().SetProductMaxAmount(product.ProductId, 20);
                     }
                     else if(prodType == "Meat")
                     {
                         product = StorageManager.Instance().ProductFactory.CreateMeatProduct();
+                        ProductMaxAmounts.Instance().SetProductMaxAmount(product.ProductId, 20);
                     }
                     else
                     {
                         product  = StorageManager.Instance().ProductFactory.CreateHouseholdProduct();
+                        ProductMaxAmounts.Instance().SetProductMaxAmount(product.ProductId, 20);
                     }
 
                     product.Name = lineSplit[1];

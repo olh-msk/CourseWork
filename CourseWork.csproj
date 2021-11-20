@@ -135,11 +135,17 @@
     <Compile Include="CustomerRegistrationWindow.xaml.cs">
       <DependentUpon>CustomerRegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\ForAdministrator\AdminChangeUserStatus.xaml.cs">
+      <DependentUpon>AdminChangeUserStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\ModeratorWindows\ModeratorWindow.xaml.cs">
       <DependentUpon>ModeratorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Frontend\UserCart\CustomerCart.xaml.cs">
       <DependentUpon>CustomerCart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\UserCart\HowManyRemoveFromCart.xaml.cs">
+      <DependentUpon>HowManyRemoveFromCart.xaml</DependentUpon>
     </Compile>
     <Compile Include="HowManyProductsAddToCart.xaml.cs">
       <DependentUpon>HowManyProductsAddToCart.xaml</DependentUpon>
@@ -181,11 +187,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Frontend\ForAdministrator\AdminChangeUserStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Frontend\ModeratorWindows\ModeratorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\UserCart\CustomerCart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\UserCart\HowManyRemoveFromCart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

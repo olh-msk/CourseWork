@@ -139,7 +139,6 @@ namespace CourseWork
             {
                 //отримуємо точний продукт
                 Product prod = GetProductByID(prodID);
-
                 //перевіряємо його максимальну кількість
                 if (prod.Amount < ProductMaxAmounts.Instance().GetProductMaxAmount(prodID))
                 {

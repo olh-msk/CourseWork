@@ -150,7 +150,6 @@ namespace CourseWork
             ClearGridTable();
             if (type == "Meat")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().MeatStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -158,7 +157,6 @@ namespace CourseWork
             }
             else if (type == "Dairy")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().DairyStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -166,7 +164,6 @@ namespace CourseWork
             }
             else if (type == "Household")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().HouseholdStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -208,7 +205,7 @@ namespace CourseWork
 
             //питаємось, скільк покупець хоче взяти
             HowManyProductsAddToCart windowAmount = new HowManyProductsAddToCart(selectedAmount, selectedProductID);
-            var taskViewModel = (HowManyProductsAddToCart)windowAmount.DataContext;
+            
             //така функція позволить чекати, поки є 
             //вікрите нше вікно
             windowAmount.ShowDialog();
@@ -230,7 +227,10 @@ namespace CourseWork
         //побачити мою корзину
         private void ButtonSeeMyCart_Click(object sender, RoutedEventArgs e)
         {
+            CourseWork.Frontend.UserCart.CustomerCart window = new CourseWork.Frontend.UserCart.CustomerCart(customerID);
+            window.ShowDialog();
 
+            RefreshTable(currentStorage);
         }
     }
 }

@@ -37,6 +37,11 @@ namespace CourseWork
         {
             return AdministratorManager.Instance().GetAdministratorById(adminID);
         }
+        public void AdministratorChangeUserStatus(int adminID, int customerID, string status)
+        {
+            Enum.TryParse(status, out UserStatus cusStatus);
 
+            AdministratorManager.Instance().GetAdministratorById(adminID).ChangeCustomerStatus(customerID,cusStatus);
+        }
     }
 }

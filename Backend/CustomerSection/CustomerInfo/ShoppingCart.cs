@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CourseWork
 {
@@ -49,18 +48,25 @@ namespace CourseWork
                     //перевірка чи продукт є на складі
                     if (ShopMediator.Instance().CheckProductMaxAmount(prodID))
                     {
+                        
                         //якщо вже не лишилось продуктів, то видалити
                         if (productsInCart[prodID]==0)
                         {
-                            RemoveProductFormCart(prodID);
+                            DeleteProductFromCart(prodID);
+                            return;
                         }
                         //інаше вертаємо продукт на склад
                         else
                         {
                             ShopMediator.Instance().SendProductToStorage(prodID);
-                            productsInCart[prodID]--;
+                            productsInCart[prodID] -= 1;
                         }
                     }
+                }
+                //якщо вже не лишилось продуктів, то видалити
+                if (productsInCart[prodID] == 0)
+                {
+                    DeleteProductFromCart(prodID);
                 }
             }
         }
@@ -85,6 +91,21 @@ namespace CourseWork
         public int GetCount()
         {
             return productsInCart.Count;
+        }
+
+        public void DeleteProductFromCart(int prodID)
+        {
+            productsInCart.Remove(prodID);
+        }
+
+        public int GetProductAmountById(int prodID)
+        {
+            return productsInCart[prodID];
+        }
+
+        public IEnumerator<KeyValuePair<int,int>> GetEnumerator()
+        {
+            return productsInCart.GetEnumerator();
         }
 
     }

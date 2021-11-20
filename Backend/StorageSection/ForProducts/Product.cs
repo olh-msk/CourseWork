@@ -17,6 +17,8 @@ namespace CourseWork
         public double Weight { get; set; }
 
         public int Amount { get; set; }
+        //наступне поле лише для роботи з формою
+        public int AmountCustomerHas { get; set; }
 
         public DateTime ExpirationDate { get; set; }
         public string ExpirationDateString { get; set; }
@@ -29,6 +31,7 @@ namespace CourseWork
             this.Price = 0;
             this.Weight = 0;
             this.Amount = 0;
+            this.AmountCustomerHas = 0;
             this.ExpirationDate = DateTime.Now;
             this.ExpirationDateString = this.ExpirationDate.ToShortDateString();
         }

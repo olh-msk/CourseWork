@@ -53,7 +53,6 @@ namespace CourseWork
             ClearGridTable();
             if (type == "Meat")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().MeatStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -61,7 +60,6 @@ namespace CourseWork
             }
             else if (type == "Dairy")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().DairyStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -69,7 +67,6 @@ namespace CourseWork
             }
             else if (type == "Household")
             {
-                ClearGridTable();
                 foreach (Product prod in StorageManager.Instance().HouseholdStorage)
                 {
                     ProductsGridTable.Items.Add(prod);
@@ -156,18 +153,6 @@ namespace CourseWork
             ProductsGridTable.Items.Refresh();
         }
 
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Goodbye",
-                            "Bye",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-            
-            LogInWindow window = new LogInWindow();
-            window.Show();
-            this.Close();
-        }
-
         private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //необхідна перевірка, щоб не вийшо помилки
@@ -184,7 +169,30 @@ namespace CourseWork
             selectedProductID = Int32.Parse(ID);
         }
 
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Goodbye",
+                            "Bye",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+            LogInWindow window = new LogInWindow();
+            window.Show();
+            this.Close();
+        }
+
+        private void ButtonUserStatus_Click(object sender, RoutedEventArgs e)
+        {
+            CourseWork.Frontend.ForAdministrator.AdminChangeUserStatus window = new CourseWork.Frontend.ForAdministrator.AdminChangeUserStatus(admodistratorID);
+
+            window.ShowDialog();
+        }
         private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonAddNewProduct_Click(object sender, RoutedEventArgs e)
         {
 
         }

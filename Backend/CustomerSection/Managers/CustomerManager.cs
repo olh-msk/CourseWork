@@ -137,6 +137,16 @@ namespace CourseWork
             return cust;
         }
 
+        //видалити продукт з корзини
+        public void RemoveProductFromCustomerCart(int customerID, int productID, int amount)
+        {
+            Customer cus = CustomerMediator.Instance().GetCustomerById(customerID);
+            //віднімання з корзини автоматично вертає продукт на склад
+            cus.ShoppingCart.RemoveProductFormCart(productID, amount);
+            Product prod = StorageMediator.Instance().GetProductById(productID);
+            prod.AmountCustomerHas -= amount;
+        }
+
         //метод чисто для показових цілей, вся інформацію буде зберігатись
         //у базах даних
         public void ReadCustomersFromTxtFile(string path)
@@ -168,6 +178,11 @@ namespace CourseWork
                     AddCustomer(cus);
                 }
             }
+        }
+
+        public IEnumerator<Customer> GetEnumerator()
+        {
+            return customers.GetEnumerator();
         }
     }
 }
