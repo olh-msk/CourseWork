@@ -22,5 +22,14 @@ namespace CourseWork
             }
             return instance;
         }
+
+        public bool IfCorrectLoginPassword(string login, string password)
+        {
+            return ModeratorManager.Instance().IfCorrectLoginPassword(login, password);
+        }
+        public int GetAdminIdByLogin(string login)
+        {
+            return ModeratorManager.Instance().GetModeratorByLogin(login);
+        }
     }
 }

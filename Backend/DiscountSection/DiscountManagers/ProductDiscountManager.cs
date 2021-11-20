@@ -13,7 +13,7 @@ namespace CourseWork
     class ProductDiscountManager: IOperationSetGetProductDiscount
     {
         private static ProductDiscountManager instance;
-        //зберігає ід покупця і його знижку, якщо вона є
+        //зберігає ід продукту і його знижку, якщо вона є
         Dictionary<int, ProductDiscount> productDiscounts;
 
         private ProductDiscountManager()
@@ -58,6 +58,11 @@ namespace CourseWork
         public bool IfProductHasDiscount(int prodID)
         {
             return productDiscounts.ContainsKey(prodID);
+        }
+
+        public IEnumerator<KeyValuePair<int, ProductDiscount>> GetEnumerator()
+        {
+            return productDiscounts.GetEnumerator();
         }
     }
     #endregion

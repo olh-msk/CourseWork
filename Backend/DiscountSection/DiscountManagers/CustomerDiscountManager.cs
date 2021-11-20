@@ -59,6 +59,11 @@ namespace CourseWork
         {
             return customerDiscounts.ContainsKey(cusID);
         }
+
+        public IEnumerator<KeyValuePair<int, CustomerDiscount>> GetEnumerator()
+        {
+            return customerDiscounts.GetEnumerator();
+        }
     }
     #endregion
 }

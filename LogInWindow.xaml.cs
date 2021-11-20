@@ -102,6 +102,38 @@ namespace CourseWork
                     return;
                 }
             }
+            else if(role == "Moderator")
+            {
+                if (ModeratorMediator.Instance().IfCorrectLoginPassword(login, password))
+                {
+                    int moderID = ModeratorMediator.Instance().GetAdminIdByLogin(login);
+                    if (moderID == -1)
+                    {
+                        MessageBox.Show("Wrong Input Data:\nDon`t have such customer",
+                            "Don`t have such customer",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        return;
+                    }
+                    textBoxLogin.ToolTip = "";
+                    PassBox.ToolTip = "";
+                    ModeratorWindow window = new ModeratorWindow(moderID);
+                    window.Show();
+                    this.Close();
+                }
+                //якщо неправильний логін чи пароль, то виводимо
+                //підказку на це
+                else
+                {
+                    textBoxLogin.ToolTip = "Try Again";
+                    PassBox.ToolTip = "Try Again";
+                    MessageBox.Show("Wrong Login or Password",
+                        "Check your data",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    return;
+                }
+            }
         }
         //хочуть зареєструватись-----------------
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e)

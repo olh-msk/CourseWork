@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
         ResizeMode="NoResize"
+        mc:Ignorable="d"
         Title="ShopWindow" Height="499.231" Width="800">
     <Grid Background="#ffdadada">
         <!--об'єкт, що буде мінятися від ширини вікна-->

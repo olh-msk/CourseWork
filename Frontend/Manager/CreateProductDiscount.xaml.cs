@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,22 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CourseWork
+namespace CourseWork.Frontend.Manager
 {
-
-    public partial class AdministratorWindow : Window
+    public partial class CreateProductDiscount : Window
     {
-        int admodistratorID;
+        int moderatorId;
         int selectedProductID;
         string currentStorage;
-        public AdministratorWindow()
+        public CreateProductDiscount()
         {
             InitializeComponent();
         }
-        public AdministratorWindow(int adminID):this()
+
+        public CreateProductDiscount(int moderId):this()
         {
-            admodistratorID = adminID;
-            TextBlockLogin.Text = AdministratorMediator.Instance().GetAdministratorById(adminID).Login;
+            moderatorId = moderId;
+            selectedProductID = 0;
+            currentStorage = "";
+        }
+
+        private void ButtonCreate_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //обрали інший тип продукту
@@ -72,8 +77,6 @@ namespace CourseWork
                     ProductsGridTable.Items.Add(prod);
                 }
             }
-            //CorrectTableData();
-
         }
         private void ClearGridTable()
         {
@@ -81,7 +84,6 @@ namespace CourseWork
             ProductsGridTable.Items.Clear();
             ProductsGridTable.Items.Refresh();
         }
-
         private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //необхідна перевірка, щоб не вийшо помилки
@@ -98,51 +100,5 @@ namespace CourseWork
             selectedProductID = Int32.Parse(ID);
         }
 
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Goodbye",
-                            "Bye",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-
-            LogInWindow window = new LogInWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void ButtonUserStatus_Click(object sender, RoutedEventArgs e)
-        {
-            CourseWork.Frontend.ForAdministrator.AdminChangeUserStatus window = new CourseWork.Frontend.ForAdministrator.AdminChangeUserStatus(admodistratorID);
-
-            window.ShowDialog();
-        }
-        private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ButtonAddNewProduct_Click(object sender, RoutedEventArgs e)
-        {
-            CourseWork.Frontend.ForAdministrator.AdminAddNewProduct window = new Frontend.ForAdministrator.AdminAddNewProduct(admodistratorID);
-            window.ShowDialog();
-            RefreshTable(currentStorage);
-        }
-
-        private void ButtonRemoveProduct_Click(object sender, RoutedEventArgs e)
-        {
-            if(selectedProductID == 0)
-            {
-                MessageBox.Show("Select product",
-                            "Info",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-                return;
-            }
-            //запит пененаправляється в медіатор, щоб не було сильної зв'язності
-            AdministratorMediator.Instance().RemoveHoleProduct(admodistratorID, selectedProductID, currentStorage);
-            //оновлюємо таблицю
-            RefreshTable(currentStorage);
-            selectedProductID = 0;
-        }
     }
 }

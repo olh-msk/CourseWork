@@ -117,6 +117,34 @@ namespace CourseWork
                 }
             }
         }
+
+        public bool IfCorrectLoginPassword(string login, string password)
+        {
+            bool res = false;
+            foreach (Moderator moderator in moderators)
+            {
+                if (moderator.Login == login &&
+                    moderator.Password == password)
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
+        }
+        public int GetModeratorByLogin(string login)
+        {
+            int res = -1;
+            foreach (Moderator moder in moderators)
+            {
+                if (moder.Login == login)
+                {
+                    res = moder.ModeratorId;
+                    break;
+                }
+            }
+            return res;
+        }
     }
     #endregion
 }
