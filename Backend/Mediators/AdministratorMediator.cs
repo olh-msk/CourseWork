@@ -43,5 +43,17 @@ namespace CourseWork
 
             AdministratorManager.Instance().GetAdministratorById(adminID).ChangeCustomerStatus(customerID,cusStatus);
         }
+
+        //неренаправляємо запит
+        public void AdministratorAddNewProduct(int adminID,string name, double price, double weight,
+                                               int selectedAmount,string selectedType, string selectedDate)
+        {
+            AdministratorManager.Instance().AdministratorAddNewProduct(adminID, name, price, weight,
+                                               selectedAmount, selectedType, selectedDate);
+        }
+        public void RemoveHoleProduct(int admidistratorID, int productID, string storageType)
+        {
+            AdministratorManager.Instance().RemoveHoleProduct(admidistratorID,productID,storageType);
+        }
     }
 }

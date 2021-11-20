@@ -43,6 +43,7 @@ namespace CourseWork
             }
             //продукт ще не існує, додаємо до вибраного складу
             //в встановлюємо його максимальну кульість на складі
+            // 1 - М'ясний, 2- Молочний, 3- Предмети для дому
             else
             {
                 if (storageNum == 1)
@@ -82,19 +83,44 @@ namespace CourseWork
                     {
                         ShopFacade.Instance().StorageManager.MeatStorage.RemoveProductFromStorage(prodID);
                         ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+                        return;
                     }
                     else if (storageNum == 2)
                     {
                         ShopFacade.Instance().StorageManager.DairyStorage.RemoveProductFromStorage(prodID);
                         ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+                        return;
 
                     }
                     else if (storageNum == 3)
                     {
                         ShopFacade.Instance().StorageManager.HouseholdStorage.RemoveProductFromStorage(prodID);
                         ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+                        return;
 
                     }
+                }
+            }
+            Product prod1 = GetProductByID(prodID);
+            //нема більше таких продуктів, забираємо продукт зі складу
+            if (!CheckProductMinAmount(prod1.ProductId))
+            {
+                if (storageNum == 1)
+                {
+                    ShopFacade.Instance().StorageManager.MeatStorage.RemoveProductFromStorage(prodID);
+                    ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+                }
+                else if (storageNum == 2)
+                {
+                    ShopFacade.Instance().StorageManager.DairyStorage.RemoveProductFromStorage(prodID);
+                    ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+
+                }
+                else if (storageNum == 3)
+                {
+                    ShopFacade.Instance().StorageManager.HouseholdStorage.RemoveProductFromStorage(prodID);
+                    ProductMaxAmounts.Instance().RemoveProductMaxAmount(prodID);
+
                 }
             }
         }

@@ -65,8 +65,9 @@ namespace CourseWork
             {
                 return;
             }
+            //оновити таблицю відносно вибраного типу
             RefreshTable(type);
-            
+
             currentStorage = type;
 
         }
@@ -75,6 +76,62 @@ namespace CourseWork
             //очищення таблиці
             ProductsGridTable.Items.Clear();
             ProductsGridTable.Items.Refresh();
+        }
+        //оновити дані таблиці----------------------
+        public void RefreshTable(string type)
+        {
+            if (type == "")
+            {
+                return;
+            }
+
+            ClearGridTable();
+
+            if (type == "Meat")
+            {
+                foreach (Product prod in StorageManager.Instance().MeatStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+            else if (type == "Dairy")
+            {
+                foreach (Product prod in StorageManager.Instance().DairyStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+            else if (type == "Household")
+            {
+                foreach (Product prod in StorageManager.Instance().HouseholdStorage)
+                {
+                    ProductsGridTable.Items.Add(prod);
+                }
+            }
+
+            //CorrectTableData();
+
+        }
+
+        //зайві функції================================
+        public void CorrectTableData()
+        {
+            //корегування інформації, добавляння kg, $ і дати
+            for (int i = 0; i < ProductsGridTable.Items.Count; i++)
+            {
+                //обов'язково перевести в текст блок, щоб отримати дані як string
+                TextBlock textBlock = GetCell(i, 0).Content as TextBlock;
+                int prodID = Int32.Parse(textBlock.Text);
+                //оновлення ціни
+                DataGridCell cell1 = GetCell(i, 2);
+                cell1.Content = string.Format("{0:f2}$", StorageMediator.Instance().GetProductById(prodID).Price);
+                //оновлення ваги
+                DataGridCell cell2 = GetCell(i, 3);
+                cell2.Content = string.Format("{0:f2}kg", StorageMediator.Instance().GetProductById(prodID).Weight);
+                //оновлення терміну придатності
+                DataGridCell cell3 = GetCell(i, 5);
+                cell3.Content = string.Format("{0}", StorageMediator.Instance().GetProductById(prodID).ExpirationDate.ToShortDateString());
+            }
         }
 
         //допоміжні функції, щоб отримати клітинку по індексу--------------------
@@ -126,7 +183,7 @@ namespace CourseWork
             }
             return child;
         }
-        //-------------------
+        //=================================
 
         //коли натиснули на клітинку, тобто добавили продукт у корзину
         private void ProductsGridTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -144,54 +201,8 @@ namespace CourseWork
             string ID = (ProductsGridTable.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             selectedProductID = Int32.Parse(ID);
         }
-        //оновити дані таблиці----------------------
-        public void RefreshTable(string type)
-        {
-            ClearGridTable();
-            if (type == "Meat")
-            {
-                foreach (Product prod in StorageManager.Instance().MeatStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            else if (type == "Dairy")
-            {
-                foreach (Product prod in StorageManager.Instance().DairyStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            else if (type == "Household")
-            {
-                foreach (Product prod in StorageManager.Instance().HouseholdStorage)
-                {
-                    ProductsGridTable.Items.Add(prod);
-                }
-            }
-            CorrectTableData();
 
-        }
-        public void CorrectTableData()
-        {
-            //корегування інформації, добавляння kg, $ і дати
-            for (int i = 0; i < ProductsGridTable.Items.Count; i++)
-            {
-                //обов'язково перевести в текст блок, щоб отримати дані як string
-                TextBlock textBlock = GetCell(i, 0).Content as TextBlock;
-                int prodID = Int32.Parse(textBlock.Text);
-                //оновлення ціни
-                DataGridCell cell1 = GetCell(i, 2);
-                cell1.Content = string.Format("{0:f2}$", StorageMediator.Instance().GetProductById(prodID).Price);
-                //оновлення ваги
-                DataGridCell cell2 = GetCell(i, 3);
-                cell2.Content = string.Format("{0:f2}kg", StorageMediator.Instance().GetProductById(prodID).Weight);
-                //оновлення терміну придатності
-                DataGridCell cell3 = GetCell(i, 5);
-                cell3.Content = string.Format("{0}", StorageMediator.Instance().GetProductById(prodID).ExpirationDate.ToShortDateString());
-            }
-        }
-
+        
         private void ButtonAddToCartProduct_Click(object sender, RoutedEventArgs e)
         {
             if(selectedProductID == 0)

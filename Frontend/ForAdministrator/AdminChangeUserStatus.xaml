@@ -38,7 +38,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Customer ID" Width="140" Binding="{Binding CustomerId}"/>
                             <DataGridTextColumn Header="Login" Width="80" Binding="{Binding PersonalData.Login}"/>
-                            <DataGridTextColumn Header="Status" Width="80" Binding="{Binding UserStatus}"/>
+                            <DataGridTextColumn Header="Status" Width="160" Binding="{Binding UserStatus}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

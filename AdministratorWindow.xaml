@@ -36,12 +36,12 @@
                         <ComboBoxItem Content="Household"/>
                     </ComboBox>
                     <DataGrid x:Name="ProductsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="568">
+                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="589">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Product ID" Width="100" Binding="{Binding ProductId}"/>
                             <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Price" Width="80" Binding="{Binding Price}"/>
-                            <DataGridTextColumn Header="Weight" Width="80" Binding="{Binding Weight}"/>
+                            <DataGridTextColumn Header="Price($)" Width="80" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Weight(kg)" Width="100" Binding="{Binding Weight}"/>
                             <DataGridTextColumn Header="Amount" Width="80" Binding="{Binding Amount}"/>
                             <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDateString}"/>
                         </DataGrid.Columns>
@@ -49,8 +49,11 @@
                 </StackPanel>
                 <Grid>
                     <Button x:Name="ButtonMyProfile" Content="My Profile" Width="110"
-                        HorizontalAlignment="Center" Margin="0,20,0,0"
+                        HorizontalAlignment="Center" Margin="170,20,0,0"
                             Click="ButtonMyProfile_Click"/>
+                    <Button x:Name="ButtonRemoveProduct" Content="Remove product" Width="150"
+                        HorizontalAlignment="Center" Margin="0,20,210,0"
+                            Click="ButtonRemoveProduct_Click"/>
                     <Button x:Name="ButtonAddNewProduct" Content="Add new product" Width="150"
                         HorizontalAlignment="Left" Margin="0,20,0,0"
                             Click="ButtonAddNewProduct_Click"/>

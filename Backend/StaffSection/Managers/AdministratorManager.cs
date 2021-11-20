@@ -145,6 +145,64 @@ namespace CourseWork
             }
             return res;
         }
+
+        //тут реалізовано додавання продукту з форми-------------
+        public void AdministratorAddNewProduct(int adminID, string name, double price, double weight,
+                                               int selectedAmount, string selectedType, string selectedDate)
+        {
+            int storageType = 0;
+            //створення і корегування продукту
+            Product prod;
+
+            if (selectedType == "Meat")
+            {
+                prod = StorageManager.Instance().ProductFactory.CreateMeatProduct();
+                storageType = 1;
+            }
+            else if (selectedType == "Dairy")
+            {
+                prod = StorageManager.Instance().ProductFactory.CreateDairyProduct();
+                storageType = 2;
+            }
+            else
+            {
+                prod = StorageManager.Instance().ProductFactory.CreateHouseholdProduct();
+                storageType = 3;
+            }
+            //переводимо дату
+            string[] date = selectedDate.Split('.');
+            int day = Int32.Parse(date[0]);
+            int month = Int32.Parse(date[1]);
+            int year = Int32.Parse(date[2]);
+
+            //оновлюємо значення продукту
+            prod.Amount = selectedAmount;
+            prod.Name = name;
+            prod.Price = price;
+            prod.Weight = weight;
+            prod.ExpirationDate = new DateTime(year, month, day);
+
+            GetAdministratorById(adminID).AddProduct(storageType, prod, selectedAmount);
+        }
+        public void RemoveHoleProduct(int admidistratorID, int productID, string selectedType)
+        {
+            int storageType = 0;
+            if (selectedType == "Meat")
+            {
+                storageType = 1;
+            }
+            else if (selectedType == "Dairy")
+            {
+                storageType = 2;
+            }
+            else
+            {
+                storageType = 3;
+            }
+
+            int amount = StorageManager.Instance().GetProductByID(productID).Amount;
+            GetAdministratorById(admidistratorID).RemoveProduct(storageType,productID, amount);
+        }
     }
     #endregion
 }

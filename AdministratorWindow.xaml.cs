@@ -72,7 +72,7 @@ namespace CourseWork
                     ProductsGridTable.Items.Add(prod);
                 }
             }
-            CorrectTableData();
+            //CorrectTableData();
 
         }
         public void CorrectTableData()
@@ -194,7 +194,26 @@ namespace CourseWork
 
         private void ButtonAddNewProduct_Click(object sender, RoutedEventArgs e)
         {
+            CourseWork.Frontend.ForAdministrator.AdminAddNewProduct window = new Frontend.ForAdministrator.AdminAddNewProduct(admodistratorID);
+            window.ShowDialog();
+            RefreshTable(currentStorage);
+        }
 
+        private void ButtonRemoveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if(selectedProductID == 0)
+            {
+                MessageBox.Show("Select product",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            //запит пененаправляється в медіатор, щоб не було сильної зв'язності
+            AdministratorMediator.Instance().RemoveHoleProduct(admodistratorID, selectedProductID, currentStorage);
+            //оновлюємо таблицю
+            RefreshTable(currentStorage);
+            selectedProductID = 0;
         }
     }
 }
