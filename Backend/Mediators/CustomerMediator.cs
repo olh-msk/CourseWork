@@ -71,6 +71,16 @@ namespace CourseWork
         {
             return CustomerManager.Instance().GetPriceWithAllDiscounts(custID, prodId);
         }
+        public void CustomerCreateNewOrder(int custID, double orderPrice, bool selfDelivery)
+        {
+            OrderManager.Instance().CustomerCreateNewOrder(custID, orderPrice, selfDelivery);
+        }
+        public void CustomerRemoveOrder(int customerID, int orderID)
+        {
+            //вертаємо гроші покопцю
+            CustomerManager.Instance().GetCustomerMoneyBack(customerID, orderID);
+            OrderManager.Instance().RemoveCustomerOrder(customerID,orderID);
+        }
     }
     #endregion
 }

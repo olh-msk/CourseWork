@@ -27,19 +27,22 @@ namespace CourseWork
 
         public bool SelfDelivery { get; set; }
 
-        public OrderSatus OrderSatus { get; set; }
+        public OrderSatus OrderStatus { get; set; }
 
+        public double OrderPrice { get; set; }
 
         public Order()
         {
             this.OrderId = orderNextUniqueId++;
 
             this.OrderDate = DateTime.Now;
-            OrderDateString = OrderDate.ToShortDateString();
+            this.OrderDateString = OrderDate.ToShortDateString();
 
             this.SelfDelivery = false;
 
-            this.OrderSatus = OrderSatus.New;
+            this.OrderPrice = 0;
+
+            this.OrderStatus = OrderSatus.New;
 
             this.orderedProducts = new Dictionary<int, int>();
         }
@@ -48,31 +51,14 @@ namespace CourseWork
         //замовлені продукти
         public void CancelOrder()
         {
-            this.OrderSatus = OrderSatus.Canceled;
+            this.OrderStatus = OrderSatus.Canceled;
         }
 
         public void UpdateOrderStatus(OrderSatus stat)
         {
-            this.OrderSatus = stat;
+            this.OrderStatus = stat;
         }
 
-
-        //дає загальну ціну разом з знижками
-        //через медіатор
-        public double GetTotalProductPrice()
-        {
-            double allPrice = 0;
-            foreach(var pair in orderedProducts)
-            {
-                allPrice += ShopMediator.Instance().GetProductByID(pair.Key).Price * pair.Value;
-            }
-            return allPrice;
-        }
-
-        public double GetTotalPriceWithDicounts(int cusID)
-        {
-            return ShopMediator.Instance().CalculatePriceWithDiscount(cusID,orderedProducts);
-        }
 
         //якщо покумець вирішить змінити замовлення
         //додати продукт у замовлення
@@ -158,6 +144,12 @@ namespace CourseWork
                 res += string.Format("Prod ID {0}\t amount: {1}\n",pair.Key, pair.Value);
             }
             return res;
+        }
+
+        //записоно id продукту і замовлену кількість
+        public IEnumerator<KeyValuePair<int, int>> GetEnumerator()
+        {
+            return orderedProducts.GetEnumerator();
         }
     }
     #endregion

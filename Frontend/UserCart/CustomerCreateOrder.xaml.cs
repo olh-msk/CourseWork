@@ -46,6 +46,9 @@ namespace CourseWork.Frontend.UserCart
             }
             //надсилаємо сигнал про заключення замовлення
             CustomerMediator.Instance().CustomerCreateNewOrder(custID, orderPrice,selfDelivery);
+            //зчитуємо кошти
+            cus.PersonalData.Money -= orderPrice;
+            this.Close();
 
         }
         private void UpdatePrice()

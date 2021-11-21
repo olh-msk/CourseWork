@@ -48,7 +48,8 @@ namespace CourseWork
             {
                 if(IfHasOrder(orderID))
                 {
-                    //якщо список вже пустий, то видалити
+                    //якщо список замовлень вже пустий, то видалити користувача
+                    //з запису про замовлення
                     if(customerOrders[cusID].Count == 0)
                     {
                         RemoveAllCustomerOrders(cusID);
@@ -60,6 +61,22 @@ namespace CourseWork
                     {
                         if(customerOrders[cusID][i].OrderId == orderID)
                         {
+                            Order order = customerOrders[cusID][i];
+                            //вертає всі продукти на склад
+                            //ключ - його id значення - кількість замовлених продуктів
+                            foreach (KeyValuePair<int, int> pair in order)
+                            {
+                                //якщо продукт ще існує
+                                if(StorageManager.Instance().IfProductExistInStorages(pair.Key))
+                                {
+                                    //відправляємо продукти назад у склад
+                                    for (int amount = 0; amount < pair.Value; amount++)
+                                    {
+                                        ShopMediator.Instance().SendProductToStorage(pair.Key);
+                                    }
+                                }
+                                //якщо ні, то
+                            }
                             customerOrders[cusID].RemoveAt(i);
                         }
                     }
@@ -128,6 +145,17 @@ namespace CourseWork
             Order newOrd = new Order();
             newOrd.SetOrderedProducts(productsInCart);
             return newOrd;
+        }
+
+        //прийшов сигнал створити нове замовлення
+        public void CustomerCreateNewOrder(int custID, double orderPrice, bool selfDelivery)
+        {
+            Customer cus = CustomerManager.Instance().GetCustomerById(custID);
+            cus.ShoppingCart.CreateOrder(custID);
+            List<Order> orders = GetCustomerOrdersById(custID);
+            Order order = orders[orders.Count - 1];
+            order.SelfDelivery = selfDelivery;
+            order.OrderPrice = orderPrice;
         }
     }
     #endregion

@@ -239,5 +239,12 @@ namespace CourseWork
             }
             return res;
         }
+        //вертаємо покупцю гроші
+        public void GetCustomerMoneyBack(int cusID, int orderID)
+        {
+            Customer cus = GetCustomerById(cusID);
+            Order order = OrderManager.Instance().GetOrderById(orderID);
+            cus.PersonalData.Money += order.OrderPrice;
+        }
     }
 }

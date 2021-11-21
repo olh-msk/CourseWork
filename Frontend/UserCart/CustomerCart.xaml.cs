@@ -118,6 +118,7 @@ namespace CourseWork.Frontend.UserCart
             }
             CustomerCreateOrder window = new CustomerCreateOrder(customerID);
             window.ShowDialog();
+            selectedProductID = 0;
             RefreshTable();
         }
     }

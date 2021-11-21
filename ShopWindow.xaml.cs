@@ -178,5 +178,12 @@ namespace CourseWork
 
             RefreshTable(currentStorage);
         }
+
+        private void ButtonMyOrders_Click(object sender, RoutedEventArgs e)
+        {
+            Frontend.OrdersWindows.CustomerOrdersWindow window = new Frontend.OrdersWindows.CustomerOrdersWindow(customerID);
+            window.ShowDialog();
+            RefreshTable(currentStorage);
+        }
     }
 }

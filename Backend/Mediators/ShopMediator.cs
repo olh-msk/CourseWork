@@ -32,9 +32,9 @@ namespace CourseWork
         public void AdministratorAddProduct(int storageNum, Product prod)
         {
             //якщо вже є такий продукт, просто збільшити кількість
-            if (IfProductExistInStorages(prod.ProductId))
+            if (StorageManager.Instance().IfProductExistInStorages(prod.ProductId))
             {
-                Product storProd = GetProductByID(prod.ProductId);
+                Product storProd = StorageManager.Instance().GetProductByID(prod.ProductId);
                 //якщо є міце на складі
                 if (CheckProductMaxAmount(storProd.ProductId))
                 {
@@ -68,9 +68,9 @@ namespace CourseWork
         public void AdministratorRemoveProduct(int storageNum, int prodID)
         {
             //якщо такий продукт існує
-            if (IfProductExistInStorages(prodID))
+            if (StorageManager.Instance().IfProductExistInStorages(prodID))
             {
-                Product prod = GetProductByID(prodID);
+                Product prod = StorageManager.Instance().GetProductByID(prodID);
                 //є ще  продукти даного типу
                 if (CheckProductMinAmount(prod.ProductId))
                 {
@@ -101,7 +101,7 @@ namespace CourseWork
                     }
                 }
             }
-            Product prod1 = GetProductByID(prodID);
+            Product prod1 = StorageManager.Instance().GetProductByID(prodID);
             //нема більше таких продуктів, забираємо продукт зі складу
             if (!CheckProductMinAmount(prod1.ProductId))
             {
@@ -138,20 +138,7 @@ namespace CourseWork
             }
         }
         
-        
-        //Пеервіряє чи взагалі існує продукт у якось зі сховищ
-        public bool IfProductExistInStorages(int prodID)
-        {
-            return ShopFacade.Instance().StorageManager.IfProductExistInStorages(prodID);
-        }
-
-        //перед викликом цієї функції обов'язково має бути виклик
-        //перевірки існування продукту взагалі
-        public Product GetProductByID(int prodID)
-        {
-            return ShopFacade.Instance().StorageManager.GetProductByID(prodID);
-        }
-
+       
         //треба перевірку чи не вийшло за максимальну
         //кількість продутків на складі
         //бо тоді не вийде додати
@@ -161,10 +148,10 @@ namespace CourseWork
             bool res = false;
 
             //якщо продукт існує
-            if(IfProductExistInStorages(prodID))
+            if(StorageManager.Instance().IfProductExistInStorages(prodID))
             {
                 //отримуємо точний продукт
-                Product prod = GetProductByID(prodID);
+                Product prod = StorageManager.Instance().GetProductByID(prodID);
                 //перевіряємо його максимальну кількість
                 if (prod.Amount < ProductMaxAmounts.Instance().GetProductMaxAmount(prodID))
                 {
@@ -183,10 +170,10 @@ namespace CourseWork
             bool res = false;
 
             //якщо продукт існує
-            if (IfProductExistInStorages(prodID))
+            if (StorageManager.Instance().IfProductExistInStorages(prodID))
             {
                 //отримуємо точний продукт
-                Product prod = GetProductByID(prodID);
+                Product prod = StorageManager.Instance().GetProductByID(prodID);
 
                 //перевіряємо чи ще лишились продукти на складі
                 if (prod.Amount > 0)
@@ -197,15 +184,6 @@ namespace CourseWork
             }
 
             return res;
-        }
-
-
-        
-        //має співпрацювати з GUI, щоб отримати інформацію
-        //метод перетворення користувача на покупця-----
-        public void AddNewCustomer()
-        {
-
         }
 
         //модератор------------------------
@@ -239,7 +217,7 @@ namespace CourseWork
             //якщо  є кількість на складі
             if(CheckProductMinAmount(prodID))
             {
-                Product prod = GetProductByID(prodID);
+                Product prod = StorageManager.Instance().GetProductByID(prodID);
                 prod.Amount--;
             }
         }
@@ -248,7 +226,7 @@ namespace CourseWork
         {
             if(CheckProductMaxAmount(prodID))
             {
-                GetProductByID(prodID).Amount++;
+                StorageManager.Instance().GetProductByID(prodID).Amount++;
             }
         }
 
@@ -270,7 +248,7 @@ namespace CourseWork
             {
                 //знижка на кожний продукт
                 ProductDiscount prod_disc = ProductDiscountManager.Instance().GetProductDiscount(pair.Key);
-                allPrice += GetProductByID(pair.Key).Price * pair.Value;
+                allPrice += StorageManager.Instance().GetProductByID(pair.Key).Price * pair.Value;
                 allPrice = allPrice - allPrice * prod_disc.Interest;
 
             }

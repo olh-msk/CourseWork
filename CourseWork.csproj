@@ -150,6 +150,12 @@
     <Compile Include="Frontend\ModeratorWindows\ModerChangeInterest.xaml.cs">
       <DependentUpon>ModerChangeInterest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\OrdersWindows\CustomerOrdersWindow.xaml.cs">
+      <DependentUpon>CustomerOrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\OrdersWindows\OrderDetails.xaml.cs">
+      <DependentUpon>OrderDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\UserCart\CustomerCart.xaml.cs">
       <DependentUpon>CustomerCart.xaml</DependentUpon>
     </Compile>
@@ -222,6 +228,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\ModeratorWindows\ModerChangeInterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\OrdersWindows\CustomerOrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\OrdersWindows\OrderDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
