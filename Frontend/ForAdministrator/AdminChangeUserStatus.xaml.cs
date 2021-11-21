@@ -103,57 +103,6 @@ namespace CourseWork.Frontend.ForAdministrator
             }
         }
 
-        //допоміжні функції, щоб отримати клітинку по індексу--------------------
-        public DataGridCell GetCell(int row, int column)
-        {
-            DataGridRow rowData = GetRow(row);
-            if (rowData != null)
-            {
-                DataGridCellsPresenter cellPresenter = GetVisualChild<DataGridCellsPresenter>(rowData);
-                DataGridCell cell = (DataGridCell)cellPresenter.ItemContainerGenerator.ContainerFromIndex(column);
-                if (cell == null)
-                {
-                    CustomersGridTable.ScrollIntoView(rowData, CustomersGridTable.Columns[column]);
-                    cell = (DataGridCell)cellPresenter.ItemContainerGenerator.ContainerFromIndex(column);
-                }
-                return cell;
-            }
-            return null;
-        }
-
-        public DataGridRow GetRow(int index)
-        {
-            DataGridRow row = (DataGridRow)CustomersGridTable.ItemContainerGenerator.ContainerFromIndex(index);
-            if (row == null)
-            {
-                CustomersGridTable.UpdateLayout();
-                CustomersGridTable.ScrollIntoView(CustomersGridTable.Items[index]);
-                row = (DataGridRow)CustomersGridTable.ItemContainerGenerator.ContainerFromIndex(index);
-            }
-            return row;
-        }
-
-        public static T GetVisualChild<T>(Visual parent) where T : Visual
-        {
-            T child = default(T);
-            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
-            for (int i = 0; i < numVisuals; i++)
-            {
-                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
-                child = v as T;
-                if (child == null)
-                {
-                    child = GetVisualChild<T>(v);
-                }
-                if (child != null)
-                {
-                    break;
-                }
-            }
-            return child;
-        }
-        //-------------------
-
         private void ClearGridTable()
         {
             //очищення таблиці

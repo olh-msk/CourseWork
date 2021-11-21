@@ -150,9 +150,18 @@ namespace CourseWork
             Moderator moder = GetModeratorById(moderatorId);
             moder.CreateProductDiscount(productID, interest);
         }
+        public void CreateNewCustomerDiscount(int moderatorId, int custID,int interest)
+        {
+            Moderator moder = GetModeratorById(moderatorId);
+            moder.CreateCustomerDiscount(custID,interest);
+        }
         public void RemoveProductDiscount(int moderatorID, int prodID)
         {
             ProductDiscountManager.Instance().RemoveDiscountFromProduct(prodID);
+        }
+        public void RemoveCustDiscount(int moderatorID, int custID)
+        {
+            CustomerDiscountManager.Instance().RemoveDiscountFromCustomer(custID);
         }
     }
     #endregion

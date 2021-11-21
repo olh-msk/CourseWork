@@ -141,6 +141,9 @@
     <Compile Include="Frontend\ForAdministrator\AdminChangeUserStatus.xaml.cs">
       <DependentUpon>AdminChangeUserStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\Manager\CreateCustomerDiscount.xaml.cs">
+      <DependentUpon>CreateCustomerDiscount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\Manager\CreateProductDiscount.xaml.cs">
       <DependentUpon>CreateProductDiscount.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,9 @@
     </Compile>
     <Compile Include="ModeratorWindow.xaml.cs">
       <DependentUpon>ModeratorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModeratorWindowCustomers.xaml.cs">
+      <DependentUpon>ModeratorWindowCustomers.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
@@ -201,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\ForAdministrator\AdminChangeUserStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\Manager\CreateCustomerDiscount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +255,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ModeratorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModeratorWindowCustomers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

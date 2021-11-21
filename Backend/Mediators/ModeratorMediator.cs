@@ -35,13 +35,25 @@ namespace CourseWork
         {
             ModeratorManager.Instance().CreateNewProductDiscount(moderatorId, productID, interest);
         }
+        public void CreateNewCustomerDiscount(int moderatorId, int custID,int interest)
+        {
+            ModeratorManager.Instance().CreateNewCustomerDiscount(moderatorId,custID,interest);
+        }
         public void RemoveProductDiscount(int moderatorID, int prodID)
         {
             ModeratorManager.Instance().RemoveProductDiscount(moderatorID, prodID);
         }
+        public void RemoveCustDiscount(int moderatorID, int custID)
+        {
+            ModeratorManager.Instance().RemoveCustDiscount(moderatorID, custID);
+        }
         public void ChangeProdDiscountInterest(int prodID, int interest)
         {
             ProductDiscountManager.Instance().GetProductDiscount(prodID).Interest = interest;
+        }
+        public void ChangeCustDiscountInterest(int custID, int interest)
+        {
+            CustomerDiscountManager.Instance().GetCustomerDiscount(custID).Interest = interest;
         }
     }
 }

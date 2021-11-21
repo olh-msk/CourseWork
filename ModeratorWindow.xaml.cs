@@ -65,7 +65,9 @@ namespace CourseWork
 
         private void ButtonCustomerDiscounts_Click(object sender, RoutedEventArgs e)
         {
-
+            ModeratorWindowCustomers window = new ModeratorWindowCustomers(moderatorID);
+            window.Show();
+            this.Close();
         }
 
         private void ButtonCreateProdDiscount_Click(object sender, RoutedEventArgs e)

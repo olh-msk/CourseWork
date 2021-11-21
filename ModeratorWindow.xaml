@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="ModeratorWindow" Height="413.925" Width="753.207">
     <Grid Background="#ffdadada">
-        <Border MinWidth="400" MinHeight="400" Margin="15" Background="white"
+        <Border MinWidth="400" MinHeight="250" Margin="15" Background="white"
                 VerticalAlignment="Center" Padding="30"
                 CornerRadius="30">
             <Border.Effect>
@@ -24,42 +24,33 @@
                     <Button x:Name="ButtonLogOut" HorizontalAlignment="Right" Content="Log out" Style="{StaticResource MaterialDesignFlatButton}"
                             Click="LogOut_Click"/>
                 </Grid>
-
-                <StackPanel>
-                    <Grid>
-                        <DataGrid x:Name="ProductsDiscountsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsDiscountsGridTable_SelectionChanged" Width="454" Margin="0,9,0,9.4">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Discount ID" Width="110" Binding="{Binding Value.DiscountId}"/>
-                                <DataGridTextColumn Header="Product ID" Width="110" Binding="{Binding Key}"/>
-                                <DataGridTextColumn Header="Product name" Width="120" Binding="{Binding Value.ProductName}"/>
-                                <DataGridTextColumn Header="Interest(%)" Width="130" Binding="{Binding Value.Interest}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel>
-                            <Button x:Name="ButtonCreateProdDiscount" Content="Create discount"
-                                    Width="140" Margin="0,20,0,0" Click="ButtonCreateProdDiscount_Click"
-                                    HorizontalAlignment="Right"/>
-                            <Button x:Name="ButtonRemoveProdDiscount" Content="Remove discount" Width="140"
-                        HorizontalAlignment="Right" Margin="150,10,0,0"
-                                    Click="ButtonRemoveProdDiscount_Click"/>
-                            <Button x:Name="ButtonChangeProdDiscount" Content="Change discount" Width="140"
-                        HorizontalAlignment="Right" Margin="150,10,0,0"
-                                    Click="ButtonChangeProdDiscount_Click"/>
-                            <Button x:Name="ButtonMyProfile" Content="My Profile" Width="110"
-                        HorizontalAlignment="Right" Margin="280,10,0,0"
-                            Click="ButtonMyProfile_Click"/>
-                            <Button x:Name="ButtonCustomerDiscounts" Content="Customer discounts" Width="160" Margin="0,10,0,0"
-                         HorizontalAlignment="Right" Click="ButtonCustomerDiscounts_Click"
-                                />
-                        </StackPanel>
-                    </Grid>
-
-                </StackPanel>
                 <Grid>
-
+                    <DataGrid x:Name="ProductsDiscountsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
+                            BorderBrush="Black" SelectionChanged="ProductsDiscountsGridTable_SelectionChanged" Width="454" Margin="0,9,0,9.4">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Discount ID" Width="110" Binding="{Binding Value.DiscountId}"/>
+                            <DataGridTextColumn Header="Product ID" Width="110" Binding="{Binding Key}"/>
+                            <DataGridTextColumn Header="Product name" Width="120" Binding="{Binding Value.ProductName}"/>
+                            <DataGridTextColumn Header="Interest(%)" Width="130" Binding="{Binding Value.Interest}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel>
+                        <Button x:Name="ButtonCreateProdDiscount" Content="Create discount"
+                                Width="140" Margin="0,20,0,0" Click="ButtonCreateProdDiscount_Click"
+                                HorizontalAlignment="Right"/>
+                        <Button x:Name="ButtonRemoveProdDiscount" Content="Remove discount" Width="140"
+                        HorizontalAlignment="Right" Margin="150,10,0,0"
+                                Click="ButtonRemoveProdDiscount_Click"/>
+                        <Button x:Name="ButtonChangeProdDiscount" Content="Change discount" Width="140"
+                        HorizontalAlignment="Right" Margin="150,10,0,0"
+                                Click="ButtonChangeProdDiscount_Click"/>
+                        <Button x:Name="ButtonMyProfile" Content="My Profile" Width="110"
+                        HorizontalAlignment="Right" Margin="280,10,0,0"
+                        Click="ButtonMyProfile_Click"/>
+                        <Button x:Name="ButtonCustomerDiscounts" Content="Customer discounts" Width="160" Margin="0,10,0,0"
+                            HorizontalAlignment="Right" Click="ButtonCustomerDiscounts_Click"/>
+                    </StackPanel>
                 </Grid>
-
             </StackPanel>
         </Border>
     </Grid>
