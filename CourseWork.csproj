@@ -153,6 +153,9 @@
     <Compile Include="Frontend\UserCart\CustomerCart.xaml.cs">
       <DependentUpon>CustomerCart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\UserCart\CustomerCreateOrder.xaml.cs">
+      <DependentUpon>CustomerCreateOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\UserCart\HowManyRemoveFromCart.xaml.cs">
       <DependentUpon>HowManyRemoveFromCart.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\UserCart\CustomerCart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\UserCart\CustomerCreateOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

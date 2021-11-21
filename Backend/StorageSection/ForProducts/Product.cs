@@ -22,6 +22,8 @@ namespace CourseWork
 
         public DateTime ExpirationDate { get; set; }
         public string ExpirationDateString { get; set; }
+        public double PriceWithDiscounts { get; set; }
+        public double TotalPriceForCustomer { get; set; }
 
         //юудемо ініціалізовувати через нащадків
         public Product()
@@ -32,6 +34,8 @@ namespace CourseWork
             this.Weight = 0;
             this.Amount = 0;
             this.AmountCustomerHas = 0;
+            PriceWithDiscounts = 0;
+            TotalPriceForCustomer = 0;
             this.ExpirationDate = DateTime.Now;
             this.ExpirationDateString = this.ExpirationDate.ToShortDateString();
         }

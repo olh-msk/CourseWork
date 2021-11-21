@@ -198,5 +198,46 @@ namespace CourseWork
             }
             return res;
         }
+
+        //рахує ціну повністю разом зі знижкою
+        public double GetPriceWithAllDiscounts(int custID, int prodId)
+        {
+            Product prod = StorageManager.Instance().GetProductByID(prodId);
+
+            double res = 0;
+            double prodDiscount = 0;
+            double custDiscount = 0;
+            if (ProductDiscountManager.Instance().IfProductHasDiscount(prod.ProductId))
+            {
+                prodDiscount = prod.Price *
+            ProductDiscountManager.Instance().GetProductDiscount(prod.ProductId).Interest / 100.0;
+            }
+            if (CustomerDiscountManager.Instance().IfCustomerHasDiscount(custID))
+            {
+                if (prodDiscount == 0)
+                {
+                    custDiscount = prod.Price *
+                    CustomerDiscountManager.Instance().GetCustomerDiscount(custID).Interest / 100.0;
+                }
+                else
+                {
+                    custDiscount = prodDiscount *
+                        CustomerDiscountManager.Instance().GetCustomerDiscount(custID).Interest / 100.0;
+                }
+            }
+            
+            res = prodDiscount + custDiscount;
+
+            if(CustomerManager.Instance().IfCustomerExistInList(custID))
+            {
+                //VIP мають постійну 10% знижку
+                
+                if (CustomerManager.Instance().GetCustomerById(custID).GetStatusString() == "VIP")
+                {
+                    res += (prod.Price - res) * 0.10;
+                }
+            }
+            return res;
+        }
     }
 }

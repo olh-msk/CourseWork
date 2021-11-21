@@ -91,6 +91,10 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().MeatStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(customerID, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
+
                     ProductsGridTable.Items.Add(prod);
                 }
             }
@@ -98,6 +102,9 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().DairyStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(customerID, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
                     ProductsGridTable.Items.Add(prod);
                 }
             }
@@ -105,12 +112,12 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().HouseholdStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(customerID, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
                     ProductsGridTable.Items.Add(prod);
                 }
             }
-
-            //CorrectTableData();
-
         }
 
         //коли натиснули на клітинку, тобто добавили продукт у корзину

@@ -16,19 +16,18 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <!--StackPanel позволяє створювати об'єкти всередині нього
-            вони будуть займати всю його ширину-->
             <StackPanel>
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Your shopping cart" FontSize="20" FontWeight="DemiBold"/>
                     <DataGrid x:Name="ProductsGridTable" IsReadOnly="True" Height="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGrid}"
-                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="591">
+                              BorderBrush="Black" SelectionChanged="ProductsGridTable_SelectionChanged" Width="667">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Product ID" Width="100" Binding="{Binding ProductId}"/>
                             <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Price($)" Width="80" Binding="{Binding Price}"/>
-                            <DataGridTextColumn Header="Weight(kg)" Width="100" Binding="{Binding Weight}"/>
+                            <DataGridTextColumn Header="Price($)" Width="80" Binding="{Binding PriceWithDiscounts}"/>
                             <DataGridTextColumn Header="Amount" Width="80" Binding="{Binding AmountCustomerHas}"/>
+                            <DataGridTextColumn Header="Weight(kg)" Width="100" Binding="{Binding Weight}"/>
+                            <DataGridTextColumn Header="Total Price($)" Width="110" Binding="{Binding TotalPriceForCustomer}"/>
                             <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDateString}"/>
                         </DataGrid.Columns>
                     </DataGrid>

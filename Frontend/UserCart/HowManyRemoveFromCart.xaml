@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Frontend.UserCart"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="HowManyRemoveFromCart" Height="247.584" Width="378.439">
     <Grid Background="#ffdadada">
         <Border Background="white" VerticalAlignment="Center" Padding="30" Width="350" CornerRadius="30">
-            <!--Для створення ефектів-->
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <!--StackPanel позволяє створювати об'єкти всередині нього
-            вони будуть займати всю його ширину-->
             <StackPanel>
-                <!--Margin може приймати 1 загальний або окемо відсдтуви від кожного краю-->
                 <TextBlock Text="How Many do you want?" FontSize="20" FontWeight="DemiBold"
                            TextAlignment="Center"/>
                 <ComboBox x:Name="ComboBoxAmount" Margin="0,0,0.4,0" Width="164">
@@ -34,7 +32,7 @@
                             Click="ButtonCancel_Click" Grid.ColumnSpan="2"/>
 
                 </Grid>
-                <!--можна і вручну обрабник подій добавляти-->
+        
             </StackPanel>
         </Border>
     </Grid>

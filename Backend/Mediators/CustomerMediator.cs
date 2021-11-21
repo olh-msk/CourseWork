@@ -66,6 +66,11 @@ namespace CourseWork
         {
             CustomerManager.RemoveProductFromCustomerCart(customerID, productID, amount);
         }
+
+        public double GetPriceWithAllDiscounts(int custID, int prodId)
+        {
+            return CustomerManager.Instance().GetPriceWithAllDiscounts(custID, prodId);
+        }
     }
     #endregion
 }

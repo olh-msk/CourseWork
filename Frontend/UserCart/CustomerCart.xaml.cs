@@ -81,6 +81,12 @@ namespace CourseWork.Frontend.UserCart
                 //очищення і втсановлення кількості, що має користувач
                 prod.AmountCustomerHas = 0;
                 prod.AmountCustomerHas = cus.ShoppingCart.GetProductAmountById(prod.ProductId);
+
+                double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(customerID, prod.ProductId);
+
+                prod.PriceWithDiscounts = prod.Price - discount;
+                prod.TotalPriceForCustomer = prod.PriceWithDiscounts * prod.AmountCustomerHas;
+
                 ProductsGridTable.Items.Add(prod);
             }
         }
@@ -108,11 +114,11 @@ namespace CourseWork.Frontend.UserCart
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
 
-                return;
+                return; 
             }
-
-
-
+            CustomerCreateOrder window = new CustomerCreateOrder(customerID);
+            window.ShowDialog();
+            RefreshTable();
         }
     }
 }

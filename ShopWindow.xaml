@@ -9,19 +9,12 @@
         mc:Ignorable="d"
         Title="ShopWindow" Height="499.231" Width="800">
     <Grid Background="#ffdadada">
-        <!--об'єкт, що буде мінятися від ширини вікна-->
-        <!--Ширина і відступи вказуються у пікселях-->
-        <!--Corner radius заукруглення кутів-->
-        <!--Border - свого роду плита, місце, де можна виставляти об'єкти-->
         <Border MinWidth="400" MinHeight="400" Margin="15" Background="white"
                 VerticalAlignment="Center" Padding="30"
                 CornerRadius="20">
-            <!--Для створення ефектів-->
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <!--StackPanel позволяє створювати об'єкти всередині нього
-            вони будуть займати всю його ширину-->
             <StackPanel>
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Welcome" FontSize="20" FontWeight="DemiBold"
@@ -44,7 +37,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Product ID" Width="100" Binding="{Binding ProductId}"/>
                             <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Price($)" Width="80" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Price($)" Width="80" Binding="{Binding PriceWithDiscounts}"/>
                             <DataGridTextColumn Header="Weight(kg)" Width="100" Binding="{Binding Weight}"/>
                             <DataGridTextColumn Header="Amount" Width="100" Binding="{Binding Amount}"/>
                             <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDateString}"/>

@@ -39,7 +39,8 @@ namespace CourseWork
         }
         public void AdministratorChangeUserStatus(int adminID, int customerID, string status)
         {
-            Enum.TryParse(status, out UserStatus cusStatus);
+            UserStatus cusStatus;
+            Enum.TryParse(status, out cusStatus);
 
             AdministratorManager.Instance().GetAdministratorById(adminID).ChangeCustomerStatus(customerID,cusStatus);
         }

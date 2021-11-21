@@ -22,7 +22,8 @@ namespace CourseWork
 
         public int OrderId { get; private set; }
 
-        public DateTime orderDate { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string OrderDateString { get; set; }
 
         public bool SelfDelivery { get; set; }
 
@@ -33,7 +34,8 @@ namespace CourseWork
         {
             this.OrderId = orderNextUniqueId++;
 
-            this.orderDate = DateTime.Now;
+            this.OrderDate = DateTime.Now;
+            OrderDateString = OrderDate.ToShortDateString();
 
             this.SelfDelivery = false;
 

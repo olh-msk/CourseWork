@@ -55,6 +55,9 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().MeatStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(0, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
                     ProductsGridTable.Items.Add(prod);
                 }
             }
@@ -62,6 +65,9 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().DairyStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(0, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
                     ProductsGridTable.Items.Add(prod);
                 }
             }
@@ -69,6 +75,9 @@ namespace CourseWork
             {
                 foreach (Product prod in StorageManager.Instance().HouseholdStorage)
                 {
+                    double discount = CustomerMediator.Instance().GetPriceWithAllDiscounts(0, prod.ProductId);
+
+                    prod.PriceWithDiscounts = prod.Price - discount;
                     ProductsGridTable.Items.Add(prod);
                 }
             }
