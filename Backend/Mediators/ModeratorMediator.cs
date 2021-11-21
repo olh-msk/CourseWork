@@ -39,5 +39,9 @@ namespace CourseWork
         {
             ModeratorManager.Instance().RemoveProductDiscount(moderatorID, prodID);
         }
+        public void ChangeProdDiscountInterest(int prodID, int interest)
+        {
+            ProductDiscountManager.Instance().GetProductDiscount(prodID).Interest = interest;
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace CourseWork
         int selectedProductDiscountID;
         int selectedProdID;
 
+        List<int> changeInterest;
         public ModeratorWindow()
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace CourseWork
         public ModeratorWindow(int moderID):this()
         {
             moderatorID = moderID;
+            changeInterest = new List<int>();
+            changeInterest.Add(0);
             TextBlockLogin.Text = ModeratorManager.Instance().GetModeratorById(moderatorID).Login;
             selectedProductDiscountID = 0;
             selectedProdID = 0;
@@ -76,7 +79,7 @@ namespace CourseWork
         {
             if(selectedProductDiscountID == 0)
             {
-                MessageBox.Show("select discount, need discount id",
+                MessageBox.Show("select discount",
                             "Info",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -84,7 +87,7 @@ namespace CourseWork
             }
             if(selectedProdID == 0)
             {
-                MessageBox.Show("select discount, need prod id",
+                MessageBox.Show("select discount",
                             "Info",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -101,7 +104,25 @@ namespace CourseWork
 
         private void ButtonChangeProdDiscount_Click(object sender, RoutedEventArgs e)
         {
+            if(selectedProductDiscountID == 0)
+            {
+                MessageBox.Show("select discount",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
 
+            CourseWork.Frontend.ModeratorWindows.ModerChangeInterest window = new Frontend.ModeratorWindows.ModerChangeInterest(changeInterest);
+            window.ShowDialog();
+            if(changeInterest[0] == 0)
+            {
+                return;
+            }
+
+            ModeratorMediator.Instance().ChangeProdDiscountInterest(selectedProdID, changeInterest[0]);
+            changeInterest[0] = 0;
+            RefreshTable();
         }
 
         private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
