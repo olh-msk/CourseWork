@@ -150,5 +150,12 @@ namespace CourseWork
                 ProductsDiscountsGridTable.Items.Add(pair);
             }
         }
+
+        private void ButtonViewOrders_Click(object sender, RoutedEventArgs e)
+        {
+            Frontend.OrdersWindows.ModeratorViewCustomers window = new Frontend.OrdersWindows.ModeratorViewCustomers();
+            window.ShowDialog();
+            RefreshTable();
+        }
     }
 }

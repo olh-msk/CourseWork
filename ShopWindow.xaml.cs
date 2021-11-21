@@ -181,6 +181,14 @@ namespace CourseWork
 
         private void ButtonMyOrders_Click(object sender, RoutedEventArgs e)
         {
+            if(!OrderManager.Instance().IfHasCustomerOrders(customerID))
+            {
+                MessageBox.Show("You dont have any orders",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
             Frontend.OrdersWindows.CustomerOrdersWindow window = new Frontend.OrdersWindows.CustomerOrdersWindow(customerID);
             window.ShowDialog();
             RefreshTable(currentStorage);

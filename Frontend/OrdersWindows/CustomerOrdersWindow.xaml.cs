@@ -35,6 +35,22 @@ namespace CourseWork.Frontend.OrdersWindows
         //переглянути деталі замовлення, їх не можна буде змінити-------
         private void ButtonDetails_Click(object sender, RoutedEventArgs e)
         {
+            if(OrderManager.Instance().GetCustomerOrdersById(customerID).Count == 0)
+            {
+                MessageBox.Show("Don`t have orders",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
+            if(selectedOrderID == 0)
+            {
+                MessageBox.Show("select order",
+                            "Info",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                return;
+            }
             OrderDetails window = new OrderDetails(customerID,selectedOrderID);
             window.ShowDialog();
             selectedOrderID = 0;
@@ -56,9 +72,9 @@ namespace CourseWork.Frontend.OrdersWindows
             //запит передається на медіатор, а той на клас
             CustomerMediator.Instance().CustomerRemoveOrder(customerID, selectedOrderID);
             //оновити баблицю
-            RefreshTable();
             //збиваємо вибраний 
             selectedOrderID = 0;
+            RefreshTable();
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)

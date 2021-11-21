@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="ModeratorWindow" Height="413.925" Width="753.207">
+        Title="ModeratorWindow" Height="441.125" Width="772.407">
     <Grid Background="#ffdadada">
         <Border MinWidth="400" MinHeight="250" Margin="15" Background="white"
                 VerticalAlignment="Center" Padding="30"
@@ -49,6 +49,8 @@
                         Click="ButtonMyProfile_Click"/>
                         <Button x:Name="ButtonCustomerDiscounts" Content="Customer discounts" Width="160" Margin="0,10,0,0"
                             HorizontalAlignment="Right" Click="ButtonCustomerDiscounts_Click"/>
+                        <Button x:Name="ButtonViewOrders" Content="Customer orders" Width="160" Margin="0,10,0,0"
+                            HorizontalAlignment="Right" Click="ButtonViewOrders_Click"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

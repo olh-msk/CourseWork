@@ -40,6 +40,14 @@ namespace CourseWork.Frontend.OrdersWindows
 
         private void FillTable()
         {
+            if(!OrderManager.Instance().IfHasCustomerOrders(customerID))
+            {
+                return;
+            }
+            if(OrderManager.Instance().GetCustomerOrdersById(customerID).Count==0)
+            {
+                return;
+            }
             Order order = OrderManager.Instance().GetOrderById(orderID);
 
             //ключ - його id значення - кількість замовлених продуктів

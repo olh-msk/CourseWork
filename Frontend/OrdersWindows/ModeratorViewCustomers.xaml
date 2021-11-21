@@ -1,0 +1,48 @@
+﻿<Window x:Class="CourseWork.Frontend.OrdersWindows.ModeratorViewCustomers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:CourseWork.Frontend.OrdersWindows"
+        mc:Ignorable="d"
+        Title="ModeratorViewCustomers" Height="461.539" Width="498.352">
+    <Grid Background="#ffdadada">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="334*"/>
+        </Grid.ColumnDefinitions>
+        <Border MinWidth="300" MinHeight="310" Margin="15,41,14.6,41" Background="white"
+                VerticalAlignment="Center" Padding="30"
+                CornerRadius="30" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="60" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <Grid>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Customers with orders" FontSize="20" FontWeight="DemiBold"
+                                   Margin="0,10,0,20"/>
+
+                </Grid>
+                <DataGrid x:Name="CustomersGridTable" IsReadOnly="True" Height="150" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignDataGrid}"
+                              BorderBrush="Black" SelectionChanged="CustomersGridTable_SelectionChanged" Width="381" Margin="0,10,0,10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Customer ID" Width="140" Binding="{Binding CustomerId}"/>
+                        <DataGridTextColumn Header="Login" Width="80" Binding="{Binding PersonalData.Login}"/>
+                        <DataGridTextColumn Header="Status" Width="70" Binding="{Binding UserStatus}"/>
+                        <DataGridTextColumn Header="Email" Width="90" Binding="{Binding PersonalData.Email}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid>
+                    <Button x:Name="ButtonExit" Content="Exit" Width="90"
+                        HorizontalAlignment="Center" Margin="140,20,0,0"
+                            Click="ButtonExit_Click"/>
+                    <Button x:Name="ButtonInfo" Content="More info" Width="100"
+                        HorizontalAlignment="Center" Margin="0,20,140,0"
+                            Click="ButtonInfo_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

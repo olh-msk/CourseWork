@@ -153,6 +153,9 @@
     <Compile Include="Frontend\OrdersWindows\CustomerOrdersWindow.xaml.cs">
       <DependentUpon>CustomerOrdersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\OrdersWindows\ModeratorViewCustomers.xaml.cs">
+      <DependentUpon>ModeratorViewCustomers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\OrdersWindows\OrderDetails.xaml.cs">
       <DependentUpon>OrderDetails.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\OrdersWindows\CustomerOrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\OrdersWindows\ModeratorViewCustomers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
