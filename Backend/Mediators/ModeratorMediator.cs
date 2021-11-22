@@ -27,9 +27,13 @@ namespace CourseWork
         {
             return ModeratorManager.Instance().IfCorrectLoginPassword(login, password);
         }
-        public int GetAdminIdByLogin(string login)
+        public int GetModerIdByLogin(string login)
         {
             return ModeratorManager.Instance().GetModeratorByLogin(login);
+        }
+        public Moderator GetModerById(int ID)
+        {
+            return ModeratorManager.Instance().GetModeratorById(ID);
         }
         public void CreateNewProductDiscount(int moderatorId, int productID,int interest)
         {

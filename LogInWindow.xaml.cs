@@ -106,7 +106,7 @@ namespace CourseWork
             {
                 if (ModeratorMediator.Instance().IfCorrectLoginPassword(login, password))
                 {
-                    int moderID = ModeratorMediator.Instance().GetAdminIdByLogin(login);
+                    int moderID = ModeratorMediator.Instance().GetModerIdByLogin(login);
                     if (moderID == -1)
                     {
                         MessageBox.Show("Wrong Input Data:\nDon`t have such customer",

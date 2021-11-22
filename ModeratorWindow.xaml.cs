@@ -129,7 +129,8 @@ namespace CourseWork
 
         private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            Frontend.Manager.ModerPrifileWindow window = new Frontend.Manager.ModerPrifileWindow(moderatorID);
+            window.ShowDialog();
         }
 
         private void ClearGridTable()

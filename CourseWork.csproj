@@ -141,11 +141,17 @@
     <Compile Include="Frontend\ForAdministrator\AdminChangeUserStatus.xaml.cs">
       <DependentUpon>AdminChangeUserStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\ForAdministrator\EmployeeProfile.xaml.cs">
+      <DependentUpon>EmployeeProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\Manager\CreateCustomerDiscount.xaml.cs">
       <DependentUpon>CreateCustomerDiscount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Frontend\Manager\CreateProductDiscount.xaml.cs">
       <DependentUpon>CreateProductDiscount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\Manager\ModerPrifileWindow.xaml.cs">
+      <DependentUpon>ModerPrifileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Frontend\ModeratorWindows\ModerChangeInterest.xaml.cs">
       <DependentUpon>ModerChangeInterest.xaml</DependentUpon>
@@ -222,11 +228,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Frontend\ForAdministrator\EmployeeProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Frontend\Manager\CreateCustomerDiscount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\Manager\CreateProductDiscount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\Manager\ModerPrifileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

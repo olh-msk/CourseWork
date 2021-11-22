@@ -81,8 +81,6 @@ namespace CourseWork
                     ProductsGridTable.Items.Add(prod);
                 }
             }
-            //CorrectTableData();
-
         }
         private void ClearGridTable()
         {
@@ -127,7 +125,8 @@ namespace CourseWork
         }
         private void ButtonMyProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            Frontend.ForAdministrator.EmployeeProfile window = new Frontend.ForAdministrator.EmployeeProfile(admodistratorID);
+            window.ShowDialog();
         }
 
         private void ButtonAddNewProduct_Click(object sender, RoutedEventArgs e)
