@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="ForRegisterWindow" Height="495" Width="630.4">
+        Title="ForRegisterWindow" Height="531.8" Width="630.4">
     <Grid Background="#ffdadada">
         <!--Додаємо нову сторінку-->
 
@@ -24,6 +24,8 @@
                         Click="ButtonAdress_Click" RenderTransformOrigin="-0.168,0.463"/>
                 <Button x:Name="ButtonCreateAcount" Content="Create Acount" HorizontalAlignment="Center" Height="38" Width="150"
                         Click="ButtonCreateAcount_Click" />
+                <Button x:Name="ButtonExit" Content="Cancel" HorizontalAlignment="Center" Height="38" Width="90" Margin="0,5,0,0"
+                        Click="ButtonExit_Click" />
             </StackPanel>
         </Border>
     </Grid>

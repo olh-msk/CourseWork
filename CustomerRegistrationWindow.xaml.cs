@@ -70,5 +70,12 @@ namespace CourseWork
             window.Show();
             this.Close();
         }
+
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            LogInWindow window = new LogInWindow();
+            window.Show();
+            this.Close();
+        }
     }
 }

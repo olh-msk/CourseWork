@@ -12,7 +12,6 @@ namespace CourseWork
 
         private ShopMediator()
         {
-
         }
         public static ShopMediator Instance()
         {
@@ -22,10 +21,6 @@ namespace CourseWork
             }
             return instance;
         }
-
-        //дії адіністратора------------------------
-
-        //адмінстратор дадати продукт
         //якщо є вже такий продукт, то просто кількість збільшити
         // 1 - М'ясний, 2- Молочний, 3- Предмети для дому
         //Краща логіка добавлання продуктів буду у наступних версіях програми
@@ -128,8 +123,6 @@ namespace CourseWork
         //реалізація методу зміни статусу покупця адміністратором
         //у майбутньому можна зробити перевірку статусу, і робити
         //відповідні дії пов'язані з ним
-        //(не позволити вхід для заблокованих, або знижку для
-        //тих, хто довго зволікав)
         public void AdministratorChangeCustomerStatus(int cusID, UserStatus status)
         {
             if(ShopFacade.Instance().CustomerManager.IfCustomerExistInList(cusID))
@@ -161,7 +154,6 @@ namespace CourseWork
             }
             return res;
         }
-
         //те саме, коли продукту немає на складі
         //ми не можемо його додати у замовлення або видалити зі складу
         //bool значить можна відняти, число >0
@@ -185,7 +177,6 @@ namespace CourseWork
 
             return res;
         }
-
         //модератор------------------------
         //створює знижки
         public void ModeratorAddNewCustomerDiscount(int cusID, int interest)
@@ -195,7 +186,6 @@ namespace CourseWork
             disc.CustomerName = CustomerManager.Instance().GetCustomerLoginById(cusID);
             CustomerDiscountManager.Instance().SetDiscountForCustomer(cusID,disc);
         }
-
         public void ModeratorAddNewProductDiscount(int prodID, int interest)
         {
             ProductDiscount disc = ProductDiscountManager.Instance().CreateNewProductDiscount();
@@ -208,8 +198,6 @@ namespace CourseWork
         {
             return OrderManager.Instance().GetCustomerOrdersById(cusID);
         }
-
-
         //дії по отриманню та вертанню продукта-------------------------------
         //забираєтся продукт з складу
         public void TakeProductFromStorage(int prodID)
@@ -229,14 +217,12 @@ namespace CourseWork
                 StorageManager.Instance().GetProductByID(prodID).Amount++;
             }
         }
-
         //стоврити нове замовлення-----------------
         public void CartCreateNewOrder(int cusID, Dictionary<int,int> productsInCart)
         {
             Order newOrdr = OrderManager.Instance().CreateNewOrder(productsInCart);
             OrderManager.Instance().AddNewCustomerOrder(cusID, newOrdr);
         }
-
         //порахувати ціну замовлення зі знижкою------
         public double CalculatePriceWithDiscount(int cusID, Dictionary<int,int> orderedProducts)
         {

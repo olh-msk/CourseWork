@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="OrderDetails" Height="423.626" Width="795.055">
+        Title="OrderDetails" Height="408.556" Width="759.892">
     <Grid Background="#ffdadada">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="63*"/>
             <ColumnDefinition Width="334*"/>
         </Grid.ColumnDefinitions>
-        <Border MinWidth="300" MinHeight="310" Margin="15,41,14.6,41" Background="white"
+        <Border MinWidth="300" MinHeight="20" Margin="15,41,14.6,41" Background="white"
                 VerticalAlignment="Center" Padding="30"
                 CornerRadius="30" Grid.ColumnSpan="2">
             <Border.Effect>

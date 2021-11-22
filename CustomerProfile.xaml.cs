@@ -41,7 +41,7 @@ namespace CourseWork
             TextBlockCustomerLogin.Text = customer.PersonalData.Login;
             TextBlockCustomerPassword.Text = customer.PersonalData.Password;
             TextBlockCustomerStatus.Text = customer.GetStatusString();
-            TextBlockCustomerMoney.Text = customer.PersonalData.Money.ToString();
+            TextBlockCustomerMoney.Text = string.Format("{0:f2}$",customer.PersonalData.Money);
             TextBlockCustomerEmail.Text = customer.PersonalData.Email;
             TextBlockCustomerAge.Text = customer.PersonalData.Age.ToString();
         }
