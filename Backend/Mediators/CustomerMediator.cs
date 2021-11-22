@@ -61,12 +61,10 @@ namespace CourseWork
         {
             CustomerManager.GetCustomerById(customerID).ShoppingCart.AddProductToCart(productID,amount);
         }
-
         public void RemoveProductFromCustomerCart(int customerID, int productID, int amount)
         {
             CustomerManager.RemoveProductFromCustomerCart(customerID, productID, amount);
         }
-
         public double GetPriceWithAllDiscounts(int custID, int prodId)
         {
             return CustomerManager.Instance().GetPriceWithAllDiscounts(custID, prodId);

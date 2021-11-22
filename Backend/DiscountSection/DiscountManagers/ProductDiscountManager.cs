@@ -8,9 +8,15 @@ namespace CourseWork
     interface IOperationSetGetProductDiscount
     {
         ProductDiscount GetProductDiscount(int prodID);
-        void SetDiscountForProduct(int prodID, ProductDiscount dis);
     }
-    class ProductDiscountManager: IOperationSetGetProductDiscount
+
+    interface IProductDiscountManager
+    {
+        void RemoveDiscountFromProduct(int prodID);
+        void AddDiscountForProduct(int prodID, ProductDiscount dis);
+    }
+    class ProductDiscountManager: IOperationSetGetProductDiscount,
+                                  IProductDiscountManager
     {
         private static ProductDiscountManager instance;
         //зберігає ід продукту і його знижку, якщо вона є
@@ -35,7 +41,7 @@ namespace CourseWork
         }
 
         //встановити знижку для покупця
-        public void SetDiscountForProduct(int prodID, ProductDiscount dis)
+        public void AddDiscountForProduct(int prodID, ProductDiscount dis)
         {
             productDiscounts[prodID] = dis;
         }

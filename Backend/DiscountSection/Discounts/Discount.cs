@@ -5,7 +5,11 @@ using System.Text;
 namespace CourseWork
 {
     #region [Discount]
-    abstract class Discount
+    interface IDiscount
+    {
+        void ChangeInterest(double newInter);
+    }
+    abstract class Discount : IDiscount
     {
         private static int DiscountNextUniqueNumber = 1;
 
@@ -19,6 +23,10 @@ namespace CourseWork
             this.Interest = 0.1;
         }
 
+        public void ChangeInterest(double newInter)
+        {
+            this.Interest = newInter;
+        }
     }
     #endregion
 }

@@ -28,7 +28,5 @@ namespace CourseWork
         {
             return this.PersonalData.CheckForLogin(login, password);
         }
-
-
     }
 }

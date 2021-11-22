@@ -47,8 +47,6 @@ namespace CourseWork
             this.orderedProducts = new Dictionary<int, int>();
         }
 
-        //тут у майбутньому можна реалізувати відрахування коштів покупцю
-        //замовлені продукти
         public void CancelOrder()
         {
             this.OrderStatus = OrderSatus.Canceled;

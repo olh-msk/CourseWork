@@ -27,12 +27,10 @@ namespace CourseWork
         {
             return AdministratorManager.Instance().IfCorrectLoginPassword(login, password);
         }
-
         public int GetAdminIdByLogin(string login)
         {
             return AdministratorManager.Instance().GetAdministratorIdByLogin(login);
         }
-
         public Administrator GetAdministratorById(int adminID)
         {
             return AdministratorManager.Instance().GetAdministratorById(adminID);
@@ -45,7 +43,7 @@ namespace CourseWork
             AdministratorManager.Instance().GetAdministratorById(adminID).ChangeCustomerStatus(customerID,cusStatus);
         }
 
-        //неренаправляємо запит
+        //перенаправляємо запит
         public void AdministratorAddNewProduct(int adminID,string name, double price, double weight,
                                                int selectedAmount,string selectedType, string selectedDate)
         {

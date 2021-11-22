@@ -184,14 +184,14 @@ namespace CourseWork
             CustomerDiscount disc = CustomerDiscountManager.Instance().CreateNewCustomerDiscount();
             disc.Interest = interest / 1.0;
             disc.CustomerName = CustomerManager.Instance().GetCustomerLoginById(cusID);
-            CustomerDiscountManager.Instance().SetDiscountForCustomer(cusID,disc);
+            CustomerDiscountManager.Instance().AddDiscountForCustomer(cusID,disc);
         }
         public void ModeratorAddNewProductDiscount(int prodID, int interest)
         {
             ProductDiscount disc = ProductDiscountManager.Instance().CreateNewProductDiscount();
             disc.Interest = interest / 1.0;
             disc.ProductName = StorageManager.Instance().GetProductNameById(prodID);
-            ProductDiscountManager.Instance().SetDiscountForProduct(prodID,disc);
+            ProductDiscountManager.Instance().AddDiscountForProduct(prodID,disc);
         }
         //отримує список замовлень--
         public List<Order> ModeratorGetCustomerOrderList(int cusID)

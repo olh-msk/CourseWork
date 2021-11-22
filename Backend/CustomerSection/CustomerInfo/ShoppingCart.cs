@@ -4,7 +4,18 @@ using System.Collections.Generic;
 namespace CourseWork
 {
     #region [Shopping Cart]
-    class ShoppingCart
+    interface IShoppingCart
+    {
+        void AddProductToCart(int prodID, int amount = 1);
+        void RemoveProductFormCart(int prodID, int amount = 1);
+    }
+    interface IOperationGetCartCount
+    {
+        int GetCount();
+        int GetProductAmountById(int prodID);
+    }
+
+    class ShoppingCart: IShoppingCart,IOperationGetCartCount
     {
         //має продукт і його кількість
         Dictionary<int, int> productsInCart;
@@ -71,7 +82,6 @@ namespace CourseWork
             }
         }
 
-        //виклик створення замовлення переноситься на медіатор----
         //приймає ід покупця змінну, чи самодоставка чи ні
         //маємо підрахувати грші зі знижкою і відніяти їх від покупця
         public void CreateOrder(int cusID)

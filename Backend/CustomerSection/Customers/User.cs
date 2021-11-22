@@ -14,12 +14,6 @@ namespace CourseWork
         {
             this.UserStatus = UserStatus.New;
         }
-        //фукція переглянути продукти у магазині
-        //буде реалізована пізніше у графічному інтерфейсі до програми
-        public void SeeProducts()
-        {
-
-        }
         //вертає статус у стрінг
         public string GetStatusString()
         {
@@ -34,14 +28,6 @@ namespace CourseWork
         public WebUser():base()
         {
 
-        }
-
-        //Метод, щоб зараєструвати покупця
-        //буде використовувати GUI для взаємодії і отримання інформації
-        //потім виклик перенаправиться у медіатор для обробки
-        public void SignUp()
-        {
-           
         }
     }
     #endregion

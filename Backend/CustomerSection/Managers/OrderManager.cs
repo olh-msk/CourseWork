@@ -5,7 +5,25 @@ using System.Text;
 namespace CourseWork
 {
     #region [Order Manager]
-    class OrderManager
+    interface IOrderManager
+    {
+        void AddNewCustomerOrder(int cusID, Order order);
+        void RemoveCustomerOrder(int cusID, int orderID);
+        void RemoveAllCustomerOrders(int cusID);
+    }
+    interface IOperationIfOrder
+    {
+        bool IfHasCustomerOrders(int cusID);
+        bool IfHasOrder(int orderID);
+    }
+    interface IOperationGetOrder
+    {
+        Order GetOrderById(int orderID);
+        List<Order> GetCustomerOrdersById(int cusID);
+    }
+    class OrderManager: IOrderManager,
+                        IOperationIfOrder,
+                        IOperationGetOrder
     {
         private static OrderManager instance;
 

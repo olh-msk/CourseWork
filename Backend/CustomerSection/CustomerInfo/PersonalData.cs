@@ -48,7 +48,7 @@ namespace CourseWork
         //віднімаємо гроші з кошилька
         public void WithdrawMoney(double sum)
         {
-
+            this.Money -= sum;
         }
         //чи є достатньо грошей
         public bool IfHasEnoughMoney(double sum)

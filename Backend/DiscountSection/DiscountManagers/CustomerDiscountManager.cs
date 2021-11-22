@@ -5,13 +5,17 @@ using System.Text;
 namespace CourseWork
 {
     #region [Customer Discount Manager]
-
-    interface IOperationSetGetCustomerDiscount
+    interface ICustomerDiscountManager
+    {
+        void AddDiscountForCustomer(int cusID, CustomerDiscount dis);
+        void RemoveDiscountFromCustomer(int cusID);
+    }
+    interface IOperationGetCustomerDiscount
     {
         CustomerDiscount GetCustomerDiscount(int cusID);
-        void SetDiscountForCustomer(int cusID, CustomerDiscount dis);
     }
-    class CustomerDiscountManager:IOperationSetGetCustomerDiscount
+    class CustomerDiscountManager:IOperationGetCustomerDiscount,
+                                  ICustomerDiscountManager
     {
         private static CustomerDiscountManager instance;
         //зберігає ід покупця і його знижку, якщо вона є
@@ -36,7 +40,7 @@ namespace CourseWork
         }
 
         //встановити знижку для покупця
-        public void SetDiscountForCustomer(int cusID, CustomerDiscount dis)
+        public void AddDiscountForCustomer(int cusID, CustomerDiscount dis)
         {
             customerDiscounts[cusID] = dis;
         }

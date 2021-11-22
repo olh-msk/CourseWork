@@ -24,5 +24,13 @@ namespace CourseWork
         {
 
         }
+
+        public override string ToString()
+        {
+            string res = "";
+            res += string.Format("Street: {0}\tCity: {1}\nCountry: {2}\tZipcode {3}",
+                Street,City,Country,Zipcode);
+            return res;
+        }
     }
 }

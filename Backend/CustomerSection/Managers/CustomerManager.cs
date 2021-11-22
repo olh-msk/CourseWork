@@ -4,13 +4,27 @@ using System.IO;
 
 namespace CourseWork
 {
-    interface IOperationAddRemoveCustomer
+    interface ICustomerManager
     {
         void AddCustomer(Customer cust);
         void RemoveCustomer(int cusID);
     }
+    interface IOperationGetCustomerInformation
+    {
+        Customer GetCustomerById(int cusID);
+        int GetCustomerIdByLogin(string login);
+        string GetCustomerLoginById(int cusID);
+    }
+    interface IOperationIfCustomer
+    {
+        bool IfCustomerExistInList(int cusID);
+        bool IfHasSuchCustomerLogin(string name);
+        bool IfCorrectLoginPassword(string login, string password);
+    }
 
-    class CustomerManager : IOperationAddRemoveCustomer
+    class CustomerManager : ICustomerManager,
+                            IOperationGetCustomerInformation,
+                            IOperationIfCustomer
     {
         private static CustomerManager instance;
 
