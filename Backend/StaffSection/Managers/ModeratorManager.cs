@@ -6,13 +6,31 @@ using System.Text;
 namespace CourseWork
 {
     #region[Moderator Manager]
-    interface IOperationAddRemoveModerator
+    interface IModeratorManager
     {
         void AddModerator(Moderator moder);
         void RemoveModerator(int moderID);
     }
+    interface IOperationModeratorRemove
+    {
+        void RemoveProductDiscount(int moderatorID, int prodID);
+        void RemoveCustDiscount(int moderatorID, int custID);
+    }
+    interface IOperationIfModerator
+    {
+        bool IfModeratorExistInList(int moderID);
+        bool IfCorrectLoginPassword(string login, string password);
+    }
+    interface IOperationGetModerator
+    {
+        int GetModeratorByLogin(string login);
+        Moderator GetModeratorById(int moderID);
+    }
     //відповідає за керування адміністраторами
-    class ModeratorManager : IOperationAddRemoveModerator
+    class ModeratorManager : IModeratorManager,
+                             IOperationModeratorRemove,
+                             IOperationIfModerator,
+                             IOperationGetModerator
     {
         private static ModeratorManager instance;
 

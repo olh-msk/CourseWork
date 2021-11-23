@@ -6,7 +6,12 @@ using System.Text;
 namespace CourseWork
 {
     #region [Storage Manager]
-    class StorageManager
+    interface IOperationGetStorage
+    {
+        Product GetProductByID(int prodID);
+        string GetProductNameById(int prodID);
+    }
+    class StorageManager: IOperationGetStorage
     {
         private static StorageManager instance;
 

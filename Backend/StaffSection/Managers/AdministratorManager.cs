@@ -6,13 +6,25 @@ using System.Text;
 namespace CourseWork
 {
     #region[Administrator Manager]
-    interface IOperationAddRemoveAdministrator
+    interface IAdministratorManager
     {
         void AddAdministrator(Administrator admin);
         void RemoveAdministrator(int adminID);
     }
+    interface IOperationIfAdministrator
+    {
+        bool IfCorrectLoginPassword(string login, string password);
+        bool IfAdministratorExistInList(int adminID);
+    }
+    interface IOperationGetAdministrator
+    {
+        Administrator GetAdministratorById(int adminID);
+        int GetAdministratorIdByLogin(string login);
+    }
     //відповідає за керування адміністраторами
-    class AdministratorManager : IOperationAddRemoveAdministrator
+    class AdministratorManager : IAdministratorManager,
+                                 IOperationIfAdministrator,
+                                 IOperationGetAdministrator
     {
         private static AdministratorManager instance;
 
